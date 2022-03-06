@@ -1,0 +1,4103 @@
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.grid2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+
+.notPixelated {
+	image-rendering: unset !important;
+}
+
+@keyframes loading {
+	100% {
+		background-position: 100% 100%;
+	}
+}
+
+@keyframes body {
+	from,
+	70% {
+		left: 0px;
+	}
+	75%,
+	to {
+		left: 4px;
+	}
+}
+
+@keyframes idle-backAppendage {
+	from,
+	70% {
+		left: -36px;
+	}
+	75%,
+	to {
+		left: -32px;
+	}
+}
+
+@keyframes armBtm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		top: 0px;
+		left: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(29deg);
+		top: -10px;
+		left: 18px;
+	}
+}
+
+@keyframes armBtmMale {
+	from,
+	70% {
+		transform: rotate(0deg);
+		top: 0px;
+		left: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(29deg);
+		top: -10px;
+		left: 15px;
+	}
+}
+
+@keyframes armTop {
+	from,
+	70% {
+		transform: rotate(0deg);
+		top: 0px;
+		left: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-14deg);
+		top: 7px;
+		left: 1px;
+	}
+}
+
+@keyframes armTopMale {
+	from,
+	70% {
+		transform: rotate(0deg);
+		top: 0px;
+		left: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-20deg);
+		top: 8px;
+		left: 5px;
+	}
+}
+
+/*** BLINK ANIMATION ***/
+
+@keyframes blink {
+	from,
+	30%,
+	36%,
+	to {
+		top: 64px;
+		height: 12px;
+	}
+	32% {
+		top: 68px;
+		height: 4px;
+	}
+}
+
+@keyframes blink2 {
+	from,
+	30%,
+	36%,
+	to {
+		top: 60px;
+		height: 12px;
+	}
+	32% {
+		top: 64px;
+		height: 4px;
+	}
+}
+
+/*** IDLE ANIMATION ***/
+
+/* .idle .heroBody, .idle .heroRightArm, .idle .heroLeftArm,
+.idle .heroLegLeft, .idle .heroLegRight, .idle .heroHeadContainer, .idle .heroBehind {
+    animation: body 10s ease infinite alternate;
+}
+.idle .female .heroArmLeftTop {
+    animation: armTop 10s ease infinite alternate;
+}
+.idle .female .heroArmLeftBtm {
+    animation: armBtm 10s ease infinite alternate;
+}
+.idle .male .heroArmLeftBtm {
+    animation: armBtmMale 10s ease infinite alternate;
+}
+.idle .male .heroArmLeftTop {
+    animation: armTopMale 10s ease infinite alternate;
+}
+.idle .backAppendage {
+    animation: idle-backAppendage 10s ease infinite alternate;
+} */
+
+/**
+BASE CARD DESIGN
+**/
+
+.heroCard {
+	width: 300px;
+	height: 430px;
+	position: relative;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	line-height: 140%;
+}
+
+.heroCard * {
+	box-sizing: border-box;
+}
+
+.flipped {
+	transform: rotateY(180deg);
+	transition: transform 1s;
+}
+
+.heroCardFront,
+.heroCardBack {
+	background-image: url(../../../assets/images/hero/cards/commonCardBackground.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding: 0px 20px 20px;
+	border-radius: 20px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: visible;
+	opacity: 1;
+	transition: all 1s ease;
+}
+
+.heroCardFrame {
+	height: calc(100% - 20px);
+}
+
+.heroCardFrame:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 3;
+	background-repeat: no-repeat, no-repeat;
+	background-size: 100%, 100%;
+}
+
+.heroCardFront .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/commonCardBorder.png),
+		url(../../../assets/images/hero/cards/commonCardBorderInside.png);
+}
+
+.heroCardBack .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/commonCardBorder.png),
+		url(../../../assets/images/hero/cards/commonCardBackFrame.png);
+}
+
+.heroCardBack {
+	transform: rotateY(180deg);
+}
+
+.flipped .heroCardFront {
+	visibility: hidden;
+	opacity: 0;
+	transition: all 1s ease;
+}
+
+.heroCardBack .heroStats {
+	height: calc(100% - 20px);
+}
+
+.heroCardBack .heroFrame {
+	height: 100%;
+	display: grid;
+}
+
+/**
+CARD ICONS
+**/
+
+.heroCard .specials {
+	text-align: center;
+	position: relative;
+	z-index: 6;
+	width: 50%;
+	margin: 0 auto;
+	height: 28px;
+	justify-content: center;
+}
+
+.heroCard .specials img,
+.heroCard .class .icon img {
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	width: calc(8px * 2);
+	height: calc(8px * 2);
+}
+
+.heroCard .specials .icon {
+	height: 18px;
+}
+
+.heroCard .specials .icon,
+.heroCard .class .icon {
+	position: relative;
+	display: inline-block;
+	margin: 0px 4px;
+}
+
+.heroCard .class .icon {
+	height: 16px;
+	margin-left: 6px;
+}
+
+.heroCard .cardRarity {
+	align-self: center;
+	justify-self: center;
+}
+
+.heroCard .cardRarity .icon {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.tooltip {
+	visibility: hidden;
+	background-color: #100f21;
+	color: #fff;
+	text-align: center;
+	border-radius: 4px;
+	padding: 2px 10px;
+	font-size: 11px;
+	white-space: nowrap;
+	position: absolute;
+	z-index: 1;
+	transition: all 0.2s ease-in-out;
+	opacity: 0;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	font-family: "Poppins", sans-serif;
+	text-transform: capitalize;
+}
+
+.heroCard .icon .tooltip {
+	top: 80%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.heroCard .icon:hover .tooltip {
+	top: 110%;
+	visibility: visible;
+	opacity: 1;
+}
+
+.heroCard .cardRarity .icon .tooltip {
+	bottom: 60%;
+	top: auto;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.heroCard .cardRarity .icon:hover .tooltip {
+	bottom: 80%;
+	top: auto;
+	visibility: visible;
+	opacity: 1;
+}
+
+/**
+HERO PREVIEW
+**/
+
+.heroPreview {
+	z-index: 2;
+}
+
+.heroPreview,
+.heroStats {
+	position: relative;
+	text-align: center;
+	padding: 12px;
+	width: 252px;
+	margin: 0 auto;
+}
+
+.heroPreview .heroFrame {
+	width: 228px;
+	height: 212px;
+}
+
+.heroPreview:before {
+	content: "";
+	display: block;
+	background: url(../../../assets/images/hero/cards/commonCardFrame.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: -28px;
+	left: -24px;
+	z-index: 2;
+	width: 300px;
+	height: 430px;
+}
+
+.heroFrame {
+	background: transparent;
+	padding: 16px;
+	position: relative;
+	color: #dbe3e8;
+}
+
+.heroID {
+	position: absolute;
+	left: 50%;
+	bottom: 11px;
+	transform: translateX(-50%);
+	font-size: 12px;
+	z-index: 10;
+	line-height: 100%;
+	color: #dbe3e8;
+}
+
+.heroHealth,
+.heroMana {
+	position: absolute;
+	z-index: 10;
+	bottom: 11px;
+	font-size: 13px;
+	font-family: "Lora", serif;
+	display: grid;
+	align-items: center;
+	grid-template-columns: auto auto;
+	grid-gap: 4px;
+	line-height: 100%;
+	color: #dbe3e8;
+}
+
+.heroHealth img,
+.heroMana img {
+	width: 16px;
+	height: 16px;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+}
+
+.heroHealth {
+	left: 24px;
+}
+
+.heroMana {
+	right: 24px;
+}
+
+.heroHealth .tooltip,
+.heroMana .tooltip {
+	bottom: 90%;
+	left: 0;
+}
+
+.heroHealth:hover .tooltip,
+.heroMana:hover .tooltip {
+	visibility: visible;
+	opacity: 1;
+	bottom: 110%;
+}
+
+/*** BACKGROUNDS ***/
+
+.heroPreview .heroFrame,
+.heroFrame {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	image-rendering: pixelated;
+}
+
+.heroCard:hover .heroPreview .heroFrame:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	image-rendering: pixelated;
+	z-index: 11;
+}
+
+.heroCard .heroPreview .heroFrame:after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(16, 15, 33, 0);
+	background: linear-gradient(
+		180deg,
+		rgba(16, 15, 33, 1) 0%,
+		rgba(16, 15, 33, 0.3) 100%
+	);
+	z-index: 0;
+	opacity: 0.8;
+	transition: all 0.2s ease-in-out;
+}
+
+.heroCard:hover .heroPreview .heroFrame:after {
+	opacity: 0;
+}
+
+.heroCard .heroPreview .heroFrame:before {
+	display: none;
+}
+
+.arctic {
+	background-image: url("../../../assets/images/hero/backgrounds/arctic-back.png");
+}
+
+.heroCard:hover .arctic {
+	background-image: url("../../../assets/images/hero/backgrounds/arctic-back.gif");
+}
+
+.arctic:before {
+	background-image: url("../../../assets/images/hero/backgrounds/arctic-front.gif");
+}
+
+.swamp {
+	background-image: url("../../../assets/images/hero/backgrounds/swamp-back.png");
+}
+
+.heroCard:hover .swamp {
+	background-image: url("../../../assets/images/hero/backgrounds/swamp-back.gif");
+}
+
+.swamp:before {
+	background-image: url("../../../assets/images/hero/backgrounds/swamp-front.gif");
+	opacity: 0.2;
+}
+
+.forest {
+	background-image: url("../../../assets/images/hero/backgrounds/forest-back.png");
+}
+
+.heroCard:hover .forest {
+	background-image: url("../../../assets/images/hero/backgrounds/forest-back.gif");
+}
+
+.forest:before {
+	background-image: url("../../../assets/images/hero/backgrounds/forest-front.gif");
+}
+
+.city {
+	background-image: url("../../../assets/images/hero/backgrounds/city-back.png");
+}
+
+.heroCard:hover .city {
+	background-image: url("../../../assets/images/hero/backgrounds/city-back.gif");
+}
+
+.plains {
+	background-image: url("../../../assets/images/hero/backgrounds/plains-back.png");
+}
+
+.heroCard:hover .plains {
+	background-image: url("../../../assets/images/hero/backgrounds/plains-back.gif");
+}
+
+.island {
+	background-image: url("../../../assets/images/hero/backgrounds/island-back.png");
+}
+
+.heroCard:hover .island {
+	background-image: url("../../../assets/images/hero/backgrounds/island-back.gif");
+}
+
+.desert {
+	background-image: url("../../../assets/images/hero/backgrounds/desert-back.png");
+}
+
+.heroCard:hover .desert {
+	background-image: url("../../../assets/images/hero/backgrounds/desert-back.gif");
+}
+
+.mountains {
+	background-image: url("../../../assets/images/hero/backgrounds/mountains-back.png");
+}
+
+.mountains:before {
+	background-image: url("../../../assets/images/hero/backgrounds/mountains-front.gif");
+	opacity: 0.1;
+}
+
+/*** HERO NAME ***/
+
+.heroName {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 30px;
+}
+
+.heroName span {
+	position: relative;
+	display: inline-block;
+	background-image: url(../../../assets/images/hero/cards/commonCardTab.png);
+	background-repeat: repeat-x;
+	font-size: 14px;
+	height: 26px;
+	color: #dbe3e8;
+	white-space: nowrap;
+	font-family: "Lora", serif;
+	padding: 0px 4px;
+	line-height: 26px;
+	text-align: center;
+}
+
+.heroName span:before,
+.heroName span:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 16px;
+	height: 26px;
+	background-repeat: no-repeat;
+}
+
+.heroName span:before {
+	right: -15px;
+	background-image: url(../../../assets/images/hero/cards/commonCardTabCorner2.png);
+}
+
+.heroName span:after {
+	background-image: url(../../../assets/images/hero/cards/commonCardTabCorner1.png);
+	left: -15px;
+}
+
+/*** HERO ***/
+
+.heroContainer {
+	width: calc(30px * 4);
+	height: calc(45px * 4);
+	position: relative;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	margin: 0 auto;
+	display: inline-block;
+	z-index: 2;
+	top: 1px;
+}
+
+@keyframes pulse {
+	from,
+	to {
+		box-shadow: 0 0 60px 40px #fff9e0, 0 0 100px 50px #fff9e0,
+			0 0 140px 30px #100f21;
+	}
+	50% {
+		box-shadow: 0 0 20px 10px #fff9e0, 0 0 50px 30px #fff9e0,
+			0 0 100px 30px #100f21;
+	}
+}
+
+.heroGlow {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	width: 0px;
+	height: 60px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 0 60px 40px #fff9e0, 0 0 100px 50px #fff9e0,
+		0 0 140px 30px #100f21;
+	opacity: 1;
+	animation: pulse 5s ease infinite;
+	z-index: 1;
+	mix-blend-mode: overlay;
+}
+
+/* .fire .heroContainer:before {
+    box-shadow: 0 0 60px 20px #ffff3d, 0 0 100px 40px #ff1f1f, 0 0 140px 30px #ffa82e;
+}
+.water .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+}
+.earth .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+}
+.wind .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+}
+.lightning .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+}
+.ice .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+}
+.light .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+}
+.dark .heroContainer:before {
+    box-shadow: 0 0 60px 20px #fff, 0 0 100px 40px #f0f, 0 0 140px 30px #0ff;
+} */
+
+/**
+HERO BODY
+**/
+
+.bodyPart,
+.bodyShift,
+.heroUndies,
+.heroUndies img,
+.heroEyes,
+.heroEyes img,
+.heroEyes svg,
+.hair,
+.hair img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: rotate(0deg);
+}
+
+.bodyPart img,
+.bodyPart svg,
+.hair img,
+.hair svg,
+.heroUndies img,
+.attachment2 {
+	width: calc(30px * 4);
+	height: calc(45px * 4);
+}
+
+.bodyPart .shadow,
+.bodyPart .highlight,
+.bodyPart .clothing,
+.bodyPart .heroUndies {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.bodyPart .shadow {
+	z-index: 2;
+}
+
+.bodyPart .highlight {
+	opacity: 0.6;
+	z-index: 3;
+}
+
+/*** HEAD AND EYES ***/
+
+.heroHead {
+	z-index: 7;
+}
+
+.heroHeadContainer {
+	position: relative;
+}
+
+.heroEyes {
+	z-index: 8;
+	top: 64px;
+	left: 48px;
+	height: 12px;
+	/* 3px * 4 */
+	width: 20px;
+	overflow: hidden;
+	animation: blink 5s ease infinite;
+}
+
+.male .heroEyes {
+	top: 60px;
+	animation: blink2 5s ease infinite;
+}
+
+.heroEyes svg,
+.heroEyes img {
+	width: calc(5px * 4);
+	height: calc(3px * 4);
+}
+
+.heroEyes .shadow {
+	z-index: 1;
+}
+
+.heroHairFront {
+	z-index: 10;
+}
+
+.heroHairBack {
+	z-index: 3;
+}
+
+.hair .shadow,
+.hair .highlight {
+	z-index: 5;
+}
+
+/*** BODY ***/
+
+.heroBody {
+	z-index: 6;
+}
+
+.heroBehind {
+	z-index: 2;
+}
+
+.heroLegLeft,
+.heroUndies {
+	z-index: 5;
+}
+
+.heroLeftArm,
+.heroArmLeftTop,
+.heroArmLeftBtm {
+	z-index: 6;
+}
+
+.heroFootRight,
+.heroFootLeft,
+.heroLegLeftBtm,
+.heroLegRightBtm,
+.heroLegRight,
+.heroRightArm {
+	z-index: 3;
+}
+
+/**
+CLOTHING
+**/
+
+.clothing {
+	z-index: 6;
+}
+
+/**
+WEAPONS
+**/
+
+.heroWeapon {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+.priest .heroWeapon,
+.archer .heroWeapon {
+	top: 0;
+	left: 0;
+}
+
+.priest .heroWeapon img {
+	top: 24px;
+	left: 20px;
+}
+
+.priest.female .heroWeapon img {
+	left: 18px;
+}
+
+.archer .heroWeapon img {
+	transform: rotate(-90deg);
+	top: 44px;
+	left: 24px;
+}
+
+.archer .heroWeapon img {
+	width: calc(6px * 4);
+	height: calc(36px * 4);
+}
+
+.priest .heroWeapon img {
+	width: calc(7px * 4);
+	height: calc(39px * 4);
+}
+
+.thief .heroWeapon {
+	z-index: 0;
+}
+
+.thief .heroWeapon img {
+	width: calc(13px * 4);
+	height: calc(5px * 4);
+	top: 103px;
+	left: -13px;
+	transform: rotate(25deg);
+}
+
+.thief.female .heroWeapon img {
+	top: 107px;
+}
+
+.monk .heroWeapon {
+	z-index: 2;
+}
+
+.monk .heroWeapon img {
+	width: calc(6px * 4);
+	height: calc(5px * 4);
+	top: 124px;
+	left: 72px;
+}
+
+.male.monk .heroWeapon img {
+	top: 116px;
+	left: 76px;
+}
+
+.wizard .heroWeapon img {
+	width: calc(2px * 4);
+	height: calc(34px * 4);
+	transform: rotate(-10deg);
+	top: 45px;
+	left: 30px;
+}
+
+.wizard.female .heroWeapon img {
+	left: 26px;
+}
+
+.warrior .heroWeapon,
+.wizard .heroWeapon {
+	z-index: -1;
+}
+
+.warrior .heroWeapon img {
+	width: calc(25px * 4);
+	height: calc(5px * 4);
+	transform: rotate(40deg);
+	top: 96px;
+	left: -44px;
+}
+
+.male.warrior .heroWeapon img {
+	top: 90px;
+	left: -42px;
+}
+
+.knight .heroWeapon {
+	z-index: 0;
+}
+
+.knight .heroWeapon img {
+	width: calc(36px * 4);
+	height: calc(7px * 4);
+	transform: rotate(40deg);
+	top: 76px;
+	left: -80px;
+}
+
+.male.knight .heroWeapon img {
+	top: 74px;
+	left: -80px;
+}
+
+.pirate .heroWeapon img {
+	width: calc(16px * 4);
+	height: calc(18px * 4);
+	transform: rotate(-30deg);
+	top: 91px;
+	left: -20px;
+}
+
+.male.pirate .heroWeapon img {
+	top: 85px;
+	left: -16px;
+}
+
+.pirate .heroWeapon {
+	z-index: -1;
+}
+
+/* ADVANCED */
+
+.paladin .heroWeapon img {
+	width: calc(36px * 4);
+	height: calc(8px * 4);
+	transform: rotate(-20deg);
+	top: 128px;
+	left: -82px;
+}
+
+.male.paladin .heroWeapon img {
+	top: 122px;
+	left: -80px;
+}
+
+.paladin .heroWeapon {
+	z-index: -1;
+}
+
+.darkKnight .heroWeapon img {
+	width: calc(32px * 4);
+	height: calc(8px * 4);
+	transform: rotate(-28deg);
+	top: 130px;
+	left: -68px;
+}
+
+.male.darkKnight .heroWeapon img {
+	top: 125px;
+	left: -66px;
+}
+
+.darkKnight .heroWeapon {
+	z-index: -1;
+}
+
+.summoner .heroWeapon img {
+	width: calc(7px * 4);
+	height: calc(7px * 4);
+	top: 85px;
+	left: 0px;
+}
+
+.ninja .heroWeapon img {
+	width: calc(20px * 4);
+	height: calc(4px * 4);
+	transform: rotate(28deg);
+	top: 106px;
+	left: -37px;
+}
+
+.male.ninja .heroWeapon img {
+	top: 99px;
+	left: -33px;
+}
+
+.ninja .heroWeapon {
+	z-index: -1;
+}
+
+/* ELITE */
+
+.dragoon .heroWeapon img {
+	width: calc(5px * 4);
+	height: calc(46px * 4);
+	transform: rotate(0deg);
+	top: -4px;
+	left: 20px;
+}
+
+.dragoon .heroWeapon {
+	z-index: -1;
+}
+
+.sage .heroWeapon img {
+	width: calc(3px * 4);
+	height: calc(10px * 4);
+	transform: rotate(-10deg);
+	top: 102px;
+	left: 23px;
+}
+
+.male.sage .heroWeapon img {
+	transform: rotate(-15deg);
+	top: 98px;
+	left: 25px;
+}
+
+.sage .heroWeapon {
+	z-index: -1;
+}
+
+/* LEGENDARY */
+
+.dreadKnight .heroWeapon img {
+	width: calc(55px * 4);
+	height: calc(8px * 4);
+	transform: rotate(-15deg);
+	top: 133px;
+	left: -153px;
+}
+
+.male.dreadKnight .heroWeapon img {
+	top: 131px;
+	left: -150px;
+}
+
+.dreadKnight .heroWeapon {
+	z-index: -1;
+}
+
+/**
+APPENDAGES
+MARKINGS
+EXTRAS
+**/
+
+/*** HEAD APPENDAGES ***/
+
+.headAppendage,
+.headGear {
+	position: absolute;
+	top: 0;
+	left: -36px;
+	z-index: 10;
+	width: calc(59px * 4);
+	height: calc(45px * 4);
+}
+
+.male .headAppendage,
+.male .headGear {
+	top: -4px;
+}
+
+.headAppendage svg,
+.headAppendage .overlay,
+.headGear svg,
+.headGear .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(59px * 4);
+	height: calc(45px * 4);
+}
+
+.headAppendage .overlay,
+.headGear .overlay {
+	z-index: 1;
+}
+
+/*** HEAD MARKINGS ***/
+
+.headMarking {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.headMarking img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(30px * 4);
+	height: calc(45px * 4);
+}
+
+/*** BACK APPENDAGES ***/
+
+.backAppendage {
+	position: absolute;
+	top: 0;
+	left: -36px;
+	z-index: 1;
+	width: calc(59px * 4);
+	height: calc(45px * 4);
+}
+
+.backAppendage svg,
+.backAppendage .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(59px * 4);
+	height: calc(45px * 4);
+}
+
+.backAppendage .overlay {
+	z-index: 2;
+}
+
+/*** ATTACHMENTS ***/
+
+.attachment2 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.attachment2 .wings {
+	position: relative;
+	left: -37px;
+	width: calc(59px * 4);
+	height: calc(45px * 4);
+}
+
+/**
+HERO INFO
+**/
+
+.heroInfo {
+	position: relative;
+	z-index: 3;
+	color: #100f21;
+	padding: 8px 6px 5px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	line-height: 125%;
+}
+
+.heroInfo .class,
+.heroInfo .level {
+	font-family: "Lora", serif;
+	padding-top: 1px;
+}
+
+.heroInfo .class {
+	text-align: left;
+	font-size: 16px;
+}
+
+.heroInfo .subClass {
+	font-size: 11px;
+	font-family: "Poppins", sans-serif;
+	display: block;
+	margin-top: -6px;
+	opacity: 0.8;
+}
+
+.heroInfo .level {
+	text-align: right;
+	font-size: 14px;
+}
+
+.heroInfo .class,
+.heroName span {
+	text-transform: capitalize;
+}
+
+/**
+HERO STATS
+AND BARS
+**/
+
+.heroStats {
+	z-index: 3;
+}
+
+.heroStats .heroFrame {
+	padding: 6px 10px;
+}
+
+.heroStats .row {
+	justify-content: space-between;
+}
+
+.heroStats .heroNumber,
+.heroStats .heroGen {
+	color: #fbe375;
+	font-family: "Lora", serif;
+	font-size: 12px;
+}
+
+.heroStats .statStamina,
+.heroStats .statHp,
+.heroStats .statMp,
+.heroStats .statXp,
+.heroStats .statSummons {
+	font-family: "Lora", serif;
+	font-size: 12px;
+	padding: 2px 0px;
+	line-height: 100%;
+}
+
+.heroStats .amount {
+	font-size: 8px;
+	font-family: "Poppins", sans-serif;
+}
+
+.heroStats .bar {
+	background-color: rgba(255, 255, 255, 0.2);
+	border-radius: 20px;
+	height: 5px;
+	width: 100%;
+	overflow: hidden;
+	margin: 0 6px;
+}
+
+.heroStats .statHp .bar,
+.heroStats .statMp .bar {
+	width: 40px;
+}
+
+.heroStats .bar .staminaBar,
+.heroStats .bar .hpBar,
+.heroStats .bar .mpBar,
+.heroStats .bar .xpBar,
+.heroStats .bar .summonsBar {
+	height: 100%;
+	border-radius: 20px;
+}
+
+.heroStats .bar .staminaBar {
+	position: relative;
+	width: 100%;
+	background-color: #f59e3f;
+	transition: 0.2s width ease-in-out;
+}
+
+.heroStats .bar .staminaBar .staminaLoading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: repeating-linear-gradient(
+		-45deg,
+		transparent,
+		transparent 0.6rem,
+		rgba(255, 255, 255, 0.4) 0.6rem,
+		rgba(255, 255, 255, 0.4) 1.25rem
+	);
+	background-size: 200% 200%;
+	animation: loading 10s linear infinite reverse;
+}
+
+.heroStats .statStaminaWrapper > div {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+}
+
+.heroStats .statStamina span {
+	color: #f59e3f;
+}
+
+.heroStats .statHp span {
+	color: #14c25a;
+}
+
+.heroStats .statMp span {
+	color: #f6a99f;
+}
+
+.heroStats .bar .hpBar {
+	width: 100%;
+	background-color: #14c25a;
+}
+
+.heroStats .bar .mpBar,
+.heroStats .bar .summonsBar {
+	width: 100%;
+	background-color: #b44d94;
+}
+
+.heroStats .bar .xpBar {
+	width: 100%;
+	background-color: #3c6fd0;
+}
+
+.heroStats .stat-refresh {
+	text-transform: uppercase;
+}
+
+/**
+STAT LIST
+SKILL LIST
+**/
+
+.heroStatsList .statList,
+.heroStatsList .skillList {
+	grid-gap: 10px 20px;
+}
+
+.heroStatsList .statList .statName,
+.heroStatsList .skillList .skillName {
+	font-size: 16px;
+}
+
+.heroStatsList .statList .statPoint,
+.heroStatsList .skillList .skillLevel {
+	font-size: 14px;
+}
+
+.heroStats h3,
+.saleHistory h3 {
+	border-bottom: 2px solid #f0b859;
+	position: relative;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-family: "Lora", serif;
+	font-weight: normal;
+}
+
+.heroStats h3:first-of-type,
+.saleHistory h3:first-of-type {
+	margin-top: 0px;
+}
+
+.heroStats h3:before,
+.saleHistory h3:before {
+	content: "";
+	background-image: url("../../../assets/images/hero/icons/mid-jewel.png");
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	bottom: -9px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.heroStatsList .heroStats h3 {
+	font-size: 20px;
+}
+
+.statList {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	grid-gap: 4px;
+	column-gap: 20px;
+}
+
+.statList > div {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.skillList {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	align-items: center;
+	grid-gap: 4px;
+	column-gap: 16px;
+}
+
+.statList .statName,
+.skillList .skillName {
+	font-family: "Lora", serif;
+	color: #fbe375;
+	position: relative;
+	font-size: 13px;
+	line-height: 20px;
+}
+
+.statList .statName .tooltip,
+.skillList .chosen .tooltip {
+	top: 50%;
+	left: 80%;
+	transform: translateY(-50%);
+}
+
+.statList .statName:hover .tooltip,
+.skillList .chosen:hover .tooltip {
+	left: 100%;
+	visibility: visible;
+	opacity: 1;
+}
+
+.statList .statBoost {
+	color: #14c25a;
+}
+
+.statList .statBoost2 {
+	color: #21ccff;
+}
+
+.statList .statBoostDouble {
+	color: #f800f8;
+}
+
+.statList .statPoint {
+	font-size: 12px;
+	line-height: 20px;
+}
+
+.statList .statPoint span {
+	color: #14c25a;
+	font-weight: bold;
+}
+
+.statList .statName,
+.skillList .skillName {
+	line-height: 20px;
+	text-align: left;
+}
+
+.statList .statPoint,
+.skillList .skillLevel {
+	font-size: 12px;
+	line-height: 20px;
+	text-align: right;
+}
+
+.skillList .chosen {
+	color: #14c25a;
+}
+
+.heroOwner {
+	opacity: 0.6;
+	font-size: 12px;
+	line-height: 1;
+	text-align: center;
+	align-self: end;
+	margin-bottom: 1em;
+}
+
+.heroHash {
+	opacity: 0.6;
+	font-size: 7px;
+	line-height: 1;
+	text-align: center;
+	align-self: start;
+	margin-top: -0.5em;
+}
+
+/***
+SHINY AND SPARKLES
+CARD EFFECTS
+***/
+
+.heroCard.mythic .heroCardFrame:after {
+	content: "";
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/sparkles.gif");
+	background-size: 400% 400%;
+	background-blend-mode: soft-light;
+	filter: brightness(1) contrast(1);
+	mix-blend-mode: color-dodge;
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	pointer-events: none;
+}
+
+.heroCard.shiny .heroCardFront:after,
+.heroCard.shiny .heroCardBack:after {
+	content: "";
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.6;
+	display: block;
+	mix-blend-mode: soft-light;
+	background-position: center;
+	visibility: visible;
+	transition: all 0.2s ease-in-out;
+}
+
+.heroCard.shiny:hover .heroCardFront:after,
+.heroCard.shiny:hover .heroCardBack:after {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.heroCard.shiny0 .heroCardFront:after,
+.heroCard.shiny0 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny00-min.png");
+}
+
+.heroCard.shiny1 .heroCardFront:after,
+.heroCard.shiny1 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny01-min.png");
+}
+
+.heroCard.shiny2 .heroCardFront:after,
+.heroCard.shiny2 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny02-min.png");
+}
+
+.heroCard.shiny3 .heroCardFront:after,
+.heroCard.shiny3 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny03-min.png");
+}
+
+.heroCard.shiny4 .heroCardFront:after,
+.heroCard.shiny4 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny04-min.png");
+}
+
+.heroCard.shiny5 .heroCardFront:after,
+.heroCard.shiny5 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny05-min.png");
+}
+
+.heroCard.shiny6 .heroCardFront:after,
+.heroCard.shiny6 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny06-min.png");
+}
+
+.heroCard.shiny7 .heroCardFront:after,
+.heroCard.shiny7 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny07-min.png");
+}
+
+.heroCard.shiny8 .heroCardFront:after,
+.heroCard.shiny8 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny08-min.png");
+}
+
+.heroCard.shiny9 .heroCardFront:after,
+.heroCard.shiny9 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny09-min.png");
+}
+
+.heroCard.shiny10 .heroCardFront:after,
+.heroCard.shiny10 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny10-min.png");
+}
+
+.heroCard.shiny11 .heroCardFront:after,
+.heroCard.shiny11 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny11-min.png");
+}
+
+.heroCard.shiny12 .heroCardFront:after,
+.heroCard.shiny12 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny12-min.png");
+}
+
+.heroCard.shiny13 .heroCardFront:after,
+.heroCard.shiny13 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny13-min.png");
+}
+
+.heroCard.shiny14 .heroCardFront:after,
+.heroCard.shiny14 .heroCardBack:after {
+	background-image: url("../../../assets/images/hero/shiny/shiny14-min.png");
+}
+
+.heroCard.shiny .heroCardFront:before,
+.heroCard.shiny .heroCardBack:before {
+	content: "";
+	background-size: 120% 120%;
+	z-index: 1;
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	mix-blend-mode: soft-light;
+	opacity: 0;
+	background-position: center;
+}
+
+.heroCard.shiny:hover .heroCardFront:before,
+.heroCard.shiny:hover .heroCardBack:before {
+	opacity: 0.75;
+	display: block;
+}
+
+.heroCard.shiny0 .heroCardFront:before,
+.heroCard.shiny0 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny00.gif");
+}
+
+.heroCard.shiny1 .heroCardFront:before,
+.heroCard.shiny1 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny01.gif");
+}
+
+.heroCard.shiny2 .heroCardFront:before,
+.heroCard.shiny2 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny02.gif");
+}
+
+.heroCard.shiny3 .heroCardFront:before,
+.heroCard.shiny3 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny03.gif");
+}
+
+.heroCard.shiny4 .heroCardFront:before,
+.heroCard.shiny4 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny04.gif");
+}
+
+.heroCard.shiny5 .heroCardFront:before,
+.heroCard.shiny5 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny05.gif");
+}
+
+.heroCard.shiny6 .heroCardFront:before,
+.heroCard.shiny6 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny06.gif");
+}
+
+.heroCard.shiny7 .heroCardFront:before,
+.heroCard.shiny7 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny07.gif");
+}
+
+.heroCard.shiny8 .heroCardFront:before,
+.heroCard.shiny8 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny08.gif");
+}
+
+.heroCard.shiny9 .heroCardFront:before,
+.heroCard.shiny9 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny09.gif");
+}
+
+.heroCard.shiny10 .heroCardFront:before,
+.heroCard.shiny10 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny10.gif");
+}
+
+.heroCard.shiny11 .heroCardFront:before,
+.heroCard.shiny11 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny11.gif");
+}
+
+.heroCard.shiny12 .heroCardFront:before,
+.heroCard.shiny12 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny12.gif");
+}
+
+.heroCard.shiny13 .heroCardFront:before,
+.heroCard.shiny13 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny13.gif");
+}
+
+.heroCard.shiny14 .heroCardFront:before,
+.heroCard.shiny14 .heroCardBack:before {
+	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny14.gif");
+}
+
+/**
+CHANGE CARD BORDERS
+BASED ON RARITY OR PARTNERSHIPS
+**/
+
+/*** UNCOMMON ***/
+
+.uncommon .heroCardFront,
+.uncommon .heroCardBack {
+	background-image: url(../../../assets/images/hero/cards/uncommonCardBackground.png);
+}
+
+.uncommon .heroCardFront .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/uncommonCardBorder.png),
+		url(../../../assets/images/hero/cards/uncommonCardBorderInside.png);
+}
+
+.uncommon .heroCardBack .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/uncommonCardBorder.png),
+		url(../../../assets/images/hero/cards/uncommonCardBackFrame.png);
+}
+
+.uncommon .heroName span {
+	background-image: url(../../../assets/images/hero/cards/uncommonCardTab.png);
+}
+
+.uncommon .heroName span:before {
+	background-image: url(../../../assets/images/hero/cards/uncommonCardTabCorner2.png);
+}
+
+.uncommon .heroName span:after {
+	background-image: url(../../../assets/images/hero/cards/uncommonCardTabCorner1.png);
+}
+
+.uncommon .heroPreview:before {
+	background: url(../../../assets/images/hero/cards/uncommonCardFrame.png);
+}
+
+.uncommon .heroHealth,
+.uncommon .heroMana,
+.uncommon .heroFrame,
+.uncommon .heroID,
+.uncommon .heroName span {
+	color: #c4e3d0;
+}
+
+/*** RARE ***/
+
+.rare .heroCardFront,
+.rare .heroCardBack {
+	background-image: url(../../../assets/images/hero/cards/rareCardBackground.png);
+}
+
+.rare .heroCardFront .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/rareCardBorder.png),
+		url(../../../assets/images/hero/cards/rareCardBorderInside.png);
+}
+
+.rare .heroCardBack .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/rareCardBorder.png),
+		url(../../../assets/images/hero/cards/rareCardBackFrame.png);
+}
+
+.rare .heroName span {
+	background-image: url(../../../assets/images/hero/cards/rareCardTab.png);
+}
+
+.rare .heroName span:before {
+	background-image: url(../../../assets/images/hero/cards/rareCardTabCorner2.png);
+}
+
+.rare .heroName span:after {
+	background-image: url(../../../assets/images/hero/cards/rareCardTabCorner1.png);
+}
+
+.rare .heroPreview:before {
+	background: url(../../../assets/images/hero/cards/rareCardFrame.png);
+}
+
+.rare .heroHealth,
+.rare .heroMana,
+.rare .heroFrame,
+.rare .heroID,
+.rare .heroName span {
+	color: #bff3ed;
+}
+
+/*** LEGENDARY ***/
+
+.legendary .heroCardFront,
+.legendary .heroCardBack {
+	background-image: url(../../../assets/images/hero/cards/legendaryCardBackground.png);
+}
+
+.legendary .heroCardFront .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/legendaryCardBorder.png),
+		url(../../../assets/images/hero/cards/legendaryCardBorderInside.png);
+}
+
+.legendary .heroCardBack .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/legendaryCardBorder.png),
+		url(../../../assets/images/hero/cards/legendaryCardBackFrame.png);
+}
+
+.legendary .heroName span {
+	background-image: url(../../../assets/images/hero/cards/legendaryCardTab.png);
+}
+
+.legendary .heroName span:before {
+	background-image: url(../../../assets/images/hero/cards/legendaryCardTabCorner2.png);
+}
+
+.legendary .heroName span:after {
+	background-image: url(../../../assets/images/hero/cards/legendaryCardTabCorner1.png);
+}
+
+.legendary .heroPreview:before {
+	background: url(../../../assets/images/hero/cards/legendaryCardFrame.png);
+}
+
+.legendary .heroHealth,
+.legendary .heroMana,
+.legendary .heroFrame,
+.legendary .heroID,
+.legendary .heroName span {
+	color: #ffca72;
+}
+
+/*** MYTHIC ***/
+
+.mythic .heroCardFront,
+.mythic .heroCardBack {
+	background-image: url(../../../assets/images/hero/cards/mythicCardBackground.png);
+}
+
+.mythic .heroCardFront .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/mythicCardBorder.png),
+		url(../../../assets/images/hero/cards/mythicCardBorderInside.png);
+}
+
+.mythic .heroCardBack .heroCardFrame:before {
+	background-image: url(../../../assets/images/hero/cards/mythicCardBorder.png),
+		url(../../../assets/images/hero/cards/mythicCardBackFrame.png);
+}
+
+.mythic .heroName span {
+	background-image: url(../../../assets/images/hero/cards/mythicCardTab.png);
+}
+
+.mythic .heroName span:before {
+	background-image: url(../../../assets/images/hero/cards/mythicCardTabCorner2.png);
+}
+
+.mythic .heroName span:after {
+	background-image: url(../../../assets/images/hero/cards/mythicCardTabCorner1.png);
+}
+
+.mythic .heroPreview:before {
+	background: url(../../../assets/images/hero/cards/mythicCardFrame.png);
+}
+
+.mythic .heroHealth,
+.mythic .heroMana,
+.mythic .heroFrame,
+.mythic .heroID,
+.mythic .heroName span {
+	color: #f7dcff;
+}
+
+/**
+CLASS ANIMATIONS
+**/
+
+/*** THIEF ***/
+
+@keyframes daggerFlip {
+	from {
+		top: 112px;
+		left: -13px;
+		transform: rotate(0deg);
+	}
+	5% {
+		top: 90px;
+		left: -40px;
+	}
+	22%,
+	to {
+		top: 112px;
+		left: -13px;
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes thiefLowerArm {
+	from,
+	25%,
+	to {
+		transform: rotate(36deg);
+		top: 16px;
+		left: 10px;
+	}
+	1% {
+		transform: rotate(52deg);
+		top: 20px;
+		left: 10px;
+	}
+}
+
+.animate .thief .heroWeapon img {
+	animation: daggerFlip 2s ease-in infinite;
+}
+
+.animate .thief .heroArmRightBtm {
+	animation: thiefLowerArm 2s ease infinite;
+}
+
+.animate .thief .heroBody,
+.animate .thief .heroRightArm,
+.animate .thief .heroLeftArm,
+.animate .thief .heroLegLeft,
+.animate .thief .heroLegRight,
+.animate .thief .heroHeadContainer,
+.animate .thief .heroBehind {
+	animation: body 10s ease infinite alternate;
+}
+
+.animate .thief.female .heroArmLeftTop {
+	animation: armTop 10s ease infinite alternate;
+}
+
+.animate .thief.female .heroArmLeftBtm {
+	animation: armBtm 10s ease infinite alternate;
+}
+
+.animate .thief .backAppendage {
+	animation: idle-backAppendage 10s ease infinite alternate;
+}
+
+.animate .thief.male .heroArmLeftBtm {
+	animation: armBtmMale 10s ease infinite alternate;
+}
+
+.animate .thief.male .heroArmLeftTop {
+	animation: armTopMale 10s ease infinite alternate;
+}
+
+/*** PRIEST ***/
+
+@keyframes priestLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(45deg);
+		left: 8px;
+		top: 22px;
+	}
+}
+
+@keyframes priestUpperArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(-10deg);
+	}
+}
+
+.animate .priest.female .heroWeapon img {
+	transform: rotate(-45deg);
+	left: 5px;
+	top: 38px;
+}
+
+.animate .priest.male .heroWeapon img {
+	transform: rotate(-45deg);
+	left: 10px;
+	top: 32px;
+}
+
+.animate .priest .heroArmRightBtm {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: priestLowerArm 9s ease infinite alternate;
+}
+
+.animate .priest .heroArmRightTop {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: priestUpperArm 9s ease infinite alternate;
+}
+
+.animate .priest .heroBody,
+.animate .priest .heroRightArm,
+.animate .priest .heroLeftArm,
+.animate .priest .heroLegLeft,
+.animate .priest .heroLegRight,
+.animate .priest .heroHeadContainer,
+.animate .priest .heroBehind {
+	animation: body 9s ease infinite alternate;
+}
+
+.animate .priest.female .heroArmLeftTop {
+	animation: armTop 9s ease infinite alternate;
+}
+
+.animate .priest.female .heroArmLeftBtm {
+	animation: armBtm 9s ease infinite alternate;
+}
+
+.animate .priest .backAppendage {
+	animation: idle-backAppendage 9s ease infinite alternate;
+}
+
+.animate .priest.male .heroArmLeftBtm {
+	animation: armBtmMale 9s ease infinite alternate;
+}
+
+.animate .priest.male .heroArmLeftTop {
+	animation: armTopMale 9s ease infinite alternate;
+}
+
+/*** WIZARD ***/
+
+@keyframes wizardLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(35deg);
+		left: 10px;
+		top: 18px;
+	}
+}
+
+@keyframes wizardUpperArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(-10deg);
+	}
+}
+
+.animate .wizard.female .heroWeapon img {
+	transform: rotate(-45deg);
+	left: 21px;
+	top: 55px;
+}
+
+.animate .wizard.male .heroWeapon img {
+	transform: rotate(-45deg);
+	left: 26px;
+	top: 48px;
+}
+
+.animate .wizard .heroArmRightBtm {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: wizardLowerArm 8s ease infinite alternate;
+}
+
+.animate .wizard .heroArmRightTop {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: wizardUpperArm 8s ease infinite alternate;
+}
+
+.animate .wizard .heroBody,
+.animate .wizard .heroRightArm,
+.animate .wizard .heroLeftArm,
+.animate .wizard .heroLegLeft,
+.animate .wizard .heroLegRight,
+.animate .wizard .heroHeadContainer,
+.animate .wizard .heroBehind {
+	animation: body 8s ease infinite alternate;
+}
+
+.animate .wizard.female .heroArmLeftTop {
+	animation: armTop 8s ease infinite alternate;
+}
+
+.animate .wizard.female .heroArmLeftBtm {
+	animation: armBtm 8s ease infinite alternate;
+}
+
+.animate .wizard .backAppendage {
+	animation: idle-backAppendage 8s ease infinite alternate;
+}
+
+.animate .wizard.male .heroArmLeftBtm {
+	animation: armBtmMale 8s ease infinite alternate;
+}
+
+.animate .wizard.male .heroArmLeftTop {
+	animation: armTopMale 8s ease infinite alternate;
+}
+
+/*** WARRIOR ***/
+
+@keyframes battleBody {
+	from {
+		top: 6px;
+	}
+	to {
+		top: 9px;
+	}
+}
+
+@keyframes battleLegLeftBtm {
+	from {
+		top: 5px;
+		left: -3px;
+		transform: rotate(-9deg);
+	}
+	to {
+		top: 5px;
+		left: 3px;
+		transform: rotate(-5deg);
+	}
+}
+
+@keyframes battleLegLeftBtmMale {
+	from {
+		top: 6px;
+		left: -4px;
+		transform: rotate(-9deg);
+		z-index: 2;
+	}
+	to {
+		top: 6px;
+		left: 2px;
+		transform: rotate(-5deg);
+		z-index: 2;
+	}
+}
+
+@keyframes battleLegLeft {
+	from {
+		top: 6px;
+		transform: rotate(-8deg);
+	}
+	to {
+		top: 9px;
+		transform: rotate(-11deg);
+	}
+}
+
+@keyframes battleLegLeftMale {
+	from {
+		top: 18px;
+		left: -16px;
+		transform: rotate(-28deg);
+		z-index: 1;
+	}
+	to {
+		top: 20px;
+		left: -18px;
+		transform: rotate(-30deg);
+		z-index: 1;
+	}
+}
+
+@keyframes battleLegRightBtm {
+	from {
+		left: -7px;
+		top: 1px;
+		transform: rotate(2deg);
+	}
+	to {
+		left: -11px;
+		top: 1px;
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes battleLegRightBtmMale {
+	from {
+		left: 3px;
+		top: 6px;
+		transform: rotate(13deg);
+	}
+	to {
+		left: -4px;
+		top: 5px;
+		transform: rotate(8deg);
+	}
+}
+
+@keyframes battleLegRight {
+	from {
+		top: 12px;
+		transform: rotate(20deg);
+	}
+	to {
+		top: 13px;
+		transform: rotate(22deg);
+	}
+}
+
+@keyframes battleLegRightMale {
+	from {
+		top: 14px;
+		left: 13px;
+		transform: rotate(22deg);
+	}
+	to {
+		top: 21px;
+		left: 14px;
+		transform: rotate(26deg);
+	}
+}
+
+@keyframes battleHead {
+	from {
+		top: 6px;
+	}
+	to {
+		top: 9px;
+	}
+}
+
+@keyframes battleArmRightBtm {
+	from {
+		transform: rotate(35deg);
+		top: 12px;
+		left: 8px;
+	}
+	to {
+		transform: rotate(40deg);
+		top: 14px;
+		left: 8px;
+	}
+}
+
+.animate .warrior.male .heroWeapon img {
+	transform: rotate(0deg);
+	top: 113px;
+	left: -51px;
+}
+
+.animate .warrior.female .heroWeapon img {
+	transform: rotate(0deg);
+	top: 117px;
+	left: -53px;
+}
+
+.animate .warrior .heroHeadContainer {
+	position: relative;
+	top: 0px;
+	animation: battleHead 1s ease infinite alternate;
+}
+
+.animate .warrior .heroFootRight {
+	left: -10px;
+}
+
+.animate .warrior .heroFootLeft {
+	left: 5px;
+}
+
+.animate .warrior .heroBehind,
+.animate .warrior .backAppendage {
+	top: 10px;
+	animation: battleBody 1s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .warrior.female .heroBody,
+.animate .warrior.female .heroLeftArm,
+.animate .warrior.female .heroRightArm,
+.animate .warrior.female .heroHeadContainer {
+	top: 10px;
+	animation: battleBody 1s ease infinite alternate;
+}
+
+.animate .warrior.female .heroArmRightTop {
+	transform: rotate(30deg);
+	top: 4px;
+	z-index: 1;
+}
+
+.animate .warrior.female .heroArmRightBtm {
+	transform: rotate(45deg);
+	top: 12px;
+	left: 5px;
+	animation: battleArmRightBtm 1s ease infinite alternate;
+}
+
+.animate .warrior.female .heroArmLeftTop {
+	transform: rotate(-18deg);
+	top: 4px;
+	left: 2px;
+}
+
+.animate .warrior.female .heroArmLeftBtm {
+	transform: rotate(39deg);
+	left: 26px;
+	top: -17px;
+}
+
+.animate .warrior.female .heroLegLeft {
+	transform: rotate(-28deg);
+	left: -2px;
+	top: 0px;
+	animation: battleLegLeft 1s ease infinite alternate;
+}
+
+.animate .warrior.female .heroLegRight {
+	transform: rotate(38deg);
+	left: 12px;
+	top: 5px;
+	animation: battleLegRight 1s ease infinite alternate;
+}
+
+.animate .warrior.female .heroLegLeftBtm {
+	left: 0px;
+	top: -5px;
+	transform: rotate(-12deg);
+	animation: battleLegLeftBtm 1s ease infinite alternate;
+}
+
+.animate .warrior.female .heroLegRightBtm {
+	left: -11px;
+	top: -7px;
+	transform: rotate(12deg);
+	animation: battleLegRightBtm 1s ease infinite alternate;
+}
+
+.animate .warrior.male .heroBody,
+.animate .warrior.male .heroLeftArm,
+.animate .warrior.male .heroRightArm {
+	top: 5px;
+	animation: battleBody 1s ease infinite alternate;
+}
+
+.animate .warrior.male .heroArmRightTop {
+	transform: rotate(18deg);
+	top: 4px;
+}
+
+.animate .warrior.male .heroArmRightBtm {
+	transform: rotate(45deg);
+	top: 12px;
+	left: 5px;
+	animation: battleArmRightBtm 1s ease infinite alternate;
+}
+
+.animate .warrior.male .heroArmLeftTop {
+	transform: rotate(-22deg);
+	top: 6px;
+	left: 5px;
+}
+
+.animate .warrior.male .heroArmLeftBtm {
+	transform: rotate(40deg);
+	left: 20px;
+	top: -18px;
+}
+
+.animate .warrior.male .heroLegLeft {
+	transform: rotate(-28deg);
+	left: -5px;
+	top: 0px;
+	animation: battleLegLeftMale 1s ease infinite alternate;
+}
+
+.animate .warrior.male .heroLegRight {
+	transform: rotate(38deg);
+	left: 15px;
+	top: 5px;
+	animation: battleLegRightMale 1s ease infinite alternate;
+}
+
+.animate .warrior.male .heroLegLeftBtm {
+	left: -2px;
+	top: -5px;
+	transform: rotate(-5deg);
+	animation: battleLegLeftBtmMale 1s ease infinite alternate;
+}
+
+.animate .warrior.male .heroLegRightBtm {
+	left: -11px;
+	top: -7px;
+	transform: rotate(12deg);
+	animation: battleLegRightBtmMale 1s ease infinite alternate;
+}
+
+/*** PIRATE ***/
+
+@keyframes pirateLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(60deg);
+		left: -5px;
+		top: 18px;
+	}
+}
+
+@keyframes fPirateLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(60deg);
+		left: 2px;
+		top: 18px;
+	}
+}
+
+@keyframes pirateUpperArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(5deg);
+		left: -2px;
+	}
+}
+
+@keyframes fPirateUpperArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(3deg);
+		left: 1px;
+	}
+}
+
+.animate .pirate.female .heroWeapon img {
+	transform: rotate(0deg);
+	left: -20px;
+	top: 83px;
+}
+
+.animate .pirate.male .heroWeapon img {
+	transform: rotate(0deg);
+	left: -16px;
+	top: 76px;
+}
+
+.animate .pirate.male .heroArmRightBtm {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: pirateLowerArm 8.5s ease infinite alternate;
+}
+
+.animate .pirate.female .heroArmRightBtm {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: fPirateLowerArm 8.5s ease infinite alternate;
+}
+
+.animate .pirate .heroArmRightTop {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: pirateUpperArm 8.5s ease infinite alternate;
+}
+
+.animate .pirate.female .heroArmRightTop {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: fPirateUpperArm 8.5s ease infinite alternate;
+}
+
+.animate .pirate .heroBody,
+.animate .pirate .heroRightArm,
+.animate .pirate .heroLeftArm,
+.animate .pirate .heroLegLeft,
+.animate .pirate .heroLegRight,
+.animate .pirate .heroHeadContainer,
+.animate .pirate .heroBehind {
+	animation: body 8.5s ease infinite alternate;
+}
+
+.animate .pirate.female .heroArmLeftTop {
+	animation: armTop 8.5s ease infinite alternate;
+}
+
+.animate .pirate.female .heroArmLeftBtm {
+	animation: armBtm 8.5s ease infinite alternate;
+}
+
+.animate .pirate .backAppendage {
+	animation: idle-backAppendage 8.5s ease infinite alternate;
+}
+
+.animate .pirate.male .heroArmLeftBtm {
+	animation: armBtmMale 8.5s ease infinite alternate;
+}
+
+.animate .pirate.male .heroArmLeftTop {
+	animation: armTopMale 8.5s ease infinite alternate;
+}
+
+/*** ARCHER ***/
+
+@keyframes archerLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(70deg);
+		left: -4px;
+		top: 23px;
+	}
+}
+
+@keyframes fArcherLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(70deg);
+		left: -3px;
+		top: 29px;
+	}
+}
+
+@keyframes archerUpperArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(20deg);
+		left: 0px;
+		top: 2px;
+	}
+}
+
+.animate .archer.female .heroWeapon img {
+	transform: rotate(-70deg);
+	left: 24px;
+	top: 50px;
+}
+
+.animate .archer.male .heroWeapon img {
+	transform: rotate(-70deg);
+	left: 28px;
+	top: 44px;
+}
+
+.animate .archer .heroArmRightBtm {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	z-index: 0;
+}
+
+.animate .archer.male .heroArmRightBtm {
+	animation: archerLowerArm 9.5s ease infinite alternate;
+}
+
+.animate .archer.female .heroArmRightBtm {
+	animation: fArcherLowerArm 9.5s ease infinite alternate;
+}
+
+.animate .archer .heroArmRightTop {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: archerUpperArm 9.5s ease infinite alternate;
+	z-index: 1;
+}
+
+.animate .archer .heroBody,
+.animate .archer .heroRightArm,
+.animate .archer .heroLeftArm,
+.animate .archer .heroLegLeft,
+.animate .archer .heroLegRight,
+.animate .archer .heroHeadContainer,
+.animate .archer .heroBehind {
+	animation: body 9.5s ease infinite alternate;
+}
+
+.animate .archer.female .heroArmLeftTop {
+	animation: armTop 9.5s ease infinite alternate;
+}
+
+.animate .archer.female .heroArmLeftBtm {
+	animation: armBtm 9.5s ease infinite alternate;
+}
+
+.animate .archer .backAppendage {
+	animation: idle-backAppendage 9.5s ease infinite alternate;
+}
+
+.animate .archer.male .heroArmLeftBtm {
+	animation: armBtmMale 9.5s ease infinite alternate;
+}
+
+.animate .archer.male .heroArmLeftTop {
+	animation: armTopMale 9.5s ease infinite alternate;
+}
+
+/*** KNIGHT ***/
+
+@keyframes knightLowerArm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	72% {
+		left: -8px;
+		top: 20px;
+	}
+	73% {
+		left: -22px;
+	}
+	75%,
+	to {
+		transform: rotate(130deg);
+		left: -31px;
+		top: 20px;
+	}
+}
+
+@keyframes fKnightLowerArm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	72% {
+		left: -8px;
+		top: 20px;
+	}
+	73% {
+		left: -22px;
+	}
+	75%,
+	to {
+		transform: rotate(130deg);
+		left: -31px;
+		top: 20px;
+	}
+}
+
+@keyframes knightUpperArm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(50deg);
+		left: -10px;
+		top: 2px;
+	}
+}
+
+.animate .knight.female .heroWeapon img {
+	transform: rotate(35deg);
+	left: -84px;
+	top: 77px;
+}
+
+.animate .knight.male .heroWeapon img {
+	transform: rotate(35deg);
+	left: -82px;
+	top: 77px;
+}
+
+.animate .knight.male .heroArmRightBtm {
+	transform: rotate(147deg);
+	left: -38px;
+	top: 20px;
+	animation: knightLowerArm 10.1s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .knight.female .heroArmRightBtm {
+	transform: rotate(100deg);
+	left: -23px;
+	top: 20px;
+	animation: fKnightLowerArm 10.1s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .knight .heroArmRightTop {
+	transform: rotate(50deg);
+	left: -10px;
+	top: 2px;
+	animation: knightUpperArm 10.1s ease infinite alternate;
+}
+
+.animate .knight .heroBody,
+.animate .knight .heroRightArm,
+.animate .knight .heroLeftArm,
+.animate .knight .heroLegLeft,
+.animate .knight .heroLegRight,
+.animate .knight .heroHeadContainer,
+.animate .knight .heroBehind {
+	animation: body 10.1s ease infinite alternate;
+}
+
+.animate .knight.female .heroArmLeftTop {
+	animation: armTop 10.1s ease infinite alternate;
+}
+
+.animate .knight.female .heroArmLeftBtm {
+	animation: armBtm 10.1s ease infinite alternate;
+}
+
+.animate .knight .backAppendage {
+	animation: idle-backAppendage 10.1s ease infinite alternate;
+}
+
+.animate .knight.male .heroArmLeftBtm {
+	animation: armBtmMale 10.1s ease infinite alternate;
+}
+
+.animate .knight.male .heroArmLeftTop {
+	animation: armTopMale 10.1s ease infinite alternate;
+}
+
+/*** MONK ***/
+
+@keyframes monkShift {
+	from,
+	70% {
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		left: 13px;
+		top: 14px;
+	}
+	87% {
+		top: 18px;
+	}
+}
+
+@keyframes monkFoot {
+	from,
+	70% {
+		left: 0px;
+	}
+	75%,
+	to {
+		left: 50px;
+	}
+}
+
+@keyframes mMonkFoot {
+	from,
+	70% {
+		left: 0px;
+	}
+	75%,
+	to {
+		left: 36px;
+	}
+}
+
+@keyframes monkArmRightTop {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(0deg);
+		left: -3px;
+		top: 2px;
+	}
+}
+
+@keyframes monkArmRightBtm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(30deg);
+		left: 8px;
+		top: 14px;
+	}
+}
+
+@keyframes monkArmLeftTop {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-29deg);
+		left: 3px;
+		top: 12px;
+	}
+}
+
+@keyframes mMonkArmLeftTop {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-29deg);
+		left: 4px;
+		top: 9px;
+	}
+}
+
+@keyframes monkArmLeftBtm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-22deg);
+		left: 6px;
+		top: 9px;
+	}
+}
+
+@keyframes monkLegLeft {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-35deg);
+		top: 28px;
+		left: 9px;
+	}
+	87% {
+		transform: rotate(-38deg);
+		top: 32px;
+		left: 7px;
+	}
+}
+
+@keyframes mMonkLegLeft {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-38deg);
+		top: 30px;
+		left: -9px;
+	}
+	87% {
+		transform: rotate(-40deg);
+		top: 34px;
+		left: -10px;
+	}
+}
+
+@keyframes monkLegRight {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(40deg);
+		left: 32px;
+		top: 30px;
+	}
+	87% {
+		transform: rotate(45deg);
+		top: 34px;
+	}
+}
+
+@keyframes mMonkLegRight {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(42deg);
+		left: 32px;
+		top: 28px;
+	}
+	87% {
+		transform: rotate(45deg);
+		top: 32px;
+	}
+}
+
+@keyframes monkLegRightBtm {
+	from,
+	70% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	75%,
+	to {
+		transform: rotate(-10deg);
+		left: -18px;
+		top: 2px;
+	}
+}
+
+.animate .female.monk .heroFootLeft {
+	left: 50px;
+	animation: monkFoot 9.2s ease infinite alternate;
+}
+
+.animate .male.monk .heroFootLeft {
+	left: 40px;
+	animation: mMonkFoot 9.2s ease infinite alternate;
+}
+
+.animate .monk .heroBody,
+.animate .monk .heroHeadContainer,
+.animate .monk .heroBehind,
+.animate .monk .heroLeftArm,
+.animate .monk .heroRightArm,
+.animate .monk .backAppendage img,
+.animate .monk .backAppendage svg {
+	left: 13px;
+	top: 14px;
+	animation: monkShift 9.2s ease infinite alternate;
+}
+
+.animate .monk .heroArmRightTop {
+	transform: rotate(0deg);
+	left: -3px;
+	top: 2px;
+	animation: monkArmRightTop 9.2s ease infinite alternate;
+}
+
+.animate .monk .heroArmRightBtm {
+	transform: rotate(30deg);
+	left: 8px;
+	top: 14px;
+	animation: monkArmRightBtm 9.2s ease infinite alternate;
+}
+
+.animate .female.monk .heroArmLeftTop {
+	transform: rotate(-29deg);
+	left: 3px;
+	top: 12px;
+	animation: monkArmLeftTop 9.2s ease infinite alternate;
+}
+
+.animate .male.monk .heroArmLeftTop {
+	transform: rotate(-29deg);
+	left: 3px;
+	top: 12px;
+	animation: mMonkArmLeftTop 9.2s ease infinite alternate;
+}
+
+.animate .monk .heroArmLeftBtm {
+	transform: rotate(-22deg);
+	left: 6px;
+	top: 9px;
+	animation: monkArmLeftBtm 9.2s ease infinite alternate;
+}
+
+.animate .female.monk .heroLegLeft,
+.animate .female.monk .heroLegLeftBtm {
+	transform: rotate(-35deg);
+	top: 28px;
+	left: 9px;
+	animation: monkLegLeft 9.2s ease infinite alternate;
+}
+
+.animate .male.monk .heroLegLeft,
+.animate .male.monk .heroLegLeftBtm {
+	transform: rotate(-35deg);
+	top: 28px;
+	left: 0px;
+	animation: mMonkLegLeft 9.2s ease infinite alternate;
+}
+
+.animate .female.monk .heroLegRight {
+	transform: rotate(40deg);
+	left: 32px;
+	top: 27px;
+	z-index: 4;
+	animation: monkLegRight 9.2s ease infinite alternate;
+}
+
+.animate .male.monk .heroLegRight {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	z-index: 4;
+	animation: mMonkLegRight 9.2s ease infinite alternate;
+}
+
+.animate .monk .heroLegRightBtm {
+	transform: rotate(-10deg);
+	left: -18px;
+	top: 2px;
+	animation: monkLegRightBtm 9.2s ease infinite alternate;
+}
+
+/*** PALADIN ***/
+
+@keyframes paladinLowerArm {
+	from,
+	65% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	67% {
+		left: -8px;
+		top: 20px;
+	}
+	68% {
+		left: -22px;
+	}
+	70%,
+	to {
+		transform: rotate(130deg);
+		left: -31px;
+		top: 20px;
+	}
+}
+
+@keyframes fpaladinLowerArm {
+	from,
+	65% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	67% {
+		left: -8px;
+		top: 25px;
+	}
+	68% {
+		left: -22px;
+	}
+	70%,
+	to {
+		transform: rotate(130deg);
+		left: -31px;
+		top: 25px;
+	}
+}
+
+@keyframes paladinUpperArm {
+	from,
+	65% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	to {
+		transform: rotate(50deg);
+		left: -10px;
+		top: 3px;
+	}
+}
+
+@keyframes paladinWeapon {
+	from,
+	65% {
+		transform: rotate(-20deg);
+		top: 120px;
+	}
+	70%,
+	to {
+		transform: rotate(15deg);
+		top: 95px;
+	}
+}
+
+@keyframes fPaladinWeapon {
+	from,
+	65% {
+		transform: rotate(-20deg);
+		top: 130px;
+	}
+	70%,
+	to {
+		transform: rotate(20deg);
+		top: 95px;
+	}
+}
+
+.animate .paladin.female .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -84px;
+	top: 130px;
+	animation: fPaladinWeapon 9.8s ease infinite alternate;
+}
+
+.animate .paladin.male .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -82px;
+	top: 120px;
+	animation: paladinWeapon 9.8s ease infinite alternate;
+}
+
+.animate .paladin.male .heroArmRightBtm {
+	transform: rotate(147deg);
+	left: -38px;
+	top: 20px;
+	animation: paladinLowerArm 9.8s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .paladin.female .heroArmRightBtm {
+	transform: rotate(100deg);
+	left: -23px;
+	top: 20px;
+	animation: fpaladinLowerArm 9.8s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .paladin .heroArmRightTop {
+	transform: rotate(50deg);
+	left: -10px;
+	top: 2px;
+	animation: paladinUpperArm 9.8s ease infinite alternate;
+}
+
+.animate .paladin .heroBody,
+.animate .paladin .heroRightArm,
+.animate .paladin .heroLeftArm,
+.animate .paladin .heroLegLeft,
+.animate .paladin .heroLegRight,
+.animate .paladin .heroHeadContainer,
+.animate .paladin .heroBehind {
+	animation: body 9.8s ease infinite alternate;
+}
+
+.animate .paladin.female .heroArmLeftTop {
+	animation: armTop 9.8s ease infinite alternate;
+}
+
+.animate .paladin.female .heroArmLeftBtm {
+	animation: armBtm 9.8s ease infinite alternate;
+}
+
+.animate .paladin .backAppendage {
+	animation: idle-backAppendage 9.8s ease infinite alternate;
+}
+
+.animate .paladin.male .heroArmLeftBtm {
+	animation: armBtmMale 9.8s ease infinite alternate;
+}
+
+.animate .paladin.male .heroArmLeftTop {
+	animation: armTopMale 9.8s ease infinite alternate;
+}
+
+/*** SUMMONER ***/
+
+@keyframes summonerWeapon {
+	from,
+	50% {
+		transform: rotate(-30deg);
+		top: 85px;
+		left: 0px;
+	}
+	25% {
+		transform: rotate(-30deg);
+		top: 80px;
+		left: -6px;
+	}
+	70% {
+		transform: rotate(0deg);
+		top: 100px;
+		left: -30px;
+	}
+	90%,
+	to {
+		transform: rotate(360deg);
+		top: 90px;
+		left: -50px;
+	}
+}
+
+@keyframes summonerShine {
+	from,
+	75% {
+		opacity: 0;
+		filter: saturate(1);
+	}
+	95%,
+	to {
+		opacity: 0.75;
+		filter: saturate(2);
+	}
+	97% {
+		filter: saturate(1);
+	}
+}
+
+@keyframes summonerWeaponOrb {
+	from,
+	50% {
+		transform: rotate(0deg);
+		top: 82px;
+	}
+	65%,
+	to {
+		transform: rotate(360deg);
+		top: 60px;
+	}
+}
+
+@keyframes summonerRightArm {
+	from,
+	50% {
+		transform: rotate(5deg);
+		left: 5px;
+		top: -1px;
+	}
+	60% {
+		top: -4px;
+	}
+	65%,
+	to {
+		transform: rotate(45deg);
+		left: 75px;
+		top: -3px;
+	}
+}
+
+@keyframes summonerRightArmBtm {
+	from,
+	50% {
+		transform: rotate(25deg);
+		top: 11px;
+		left: 5px;
+	}
+	65%,
+	to {
+		transform: rotate(30deg);
+		top: 11px;
+		left: 8px;
+	}
+}
+
+.animate .summoner .heroWeapon {
+	z-index: 10;
+}
+
+.animate .summoner .heroWeapon img {
+	animation: summonerWeapon 5s ease-in-out infinite alternate;
+	transform: rotate(-30deg);
+}
+
+.animate .summoner .heroWeapon:before {
+	content: "";
+	display: block;
+	width: 70px;
+	height: 70px;
+	top: 65px;
+	left: -70px;
+	position: absolute;
+	z-index: 100;
+	mix-blend-mode: soft-light;
+	filter: saturate(1);
+	opacity: 0;
+	border-radius: 50%;
+	background: rgb(2, 237, 255);
+	background: radial-gradient(
+		circle,
+		rgba(2, 237, 255, 1) 0%,
+		rgba(255, 0, 254, 0) 70%
+	);
+	animation: summonerShine 5s ease-in-out infinite alternate;
+}
+
+.animate .summoner .heroRightArm {
+	transform: rotate(5deg);
+	left: 5px;
+	animation: summonerRightArm 5s ease infinite alternate;
+}
+
+.animate .summoner .heroArmRightBtm {
+	transform: rotate(25deg);
+	top: 11px;
+	left: 5px;
+	animation: summonerRightArmBtm 5s ease infinite alternate;
+}
+
+/*** DARK KNIGHT ***/
+
+@keyframes darkKnightLowerArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	80%,
+	90%,
+	to {
+		transform: rotate(75deg);
+		top: 29px;
+		left: 4px;
+	}
+	75%,
+	85% {
+		transform: rotate(65deg);
+	}
+}
+
+@keyframes darkKnightRightArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	64% {
+		top: -5px;
+	}
+	70% {
+		transform: rotate(50deg);
+		left: 83px;
+		top: -3px;
+	}
+	75%,
+	to {
+		transform: rotate(50deg);
+		left: 87px;
+		top: -3px;
+	}
+}
+
+@keyframes fdarkKnightLowerArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	80%,
+	90%,
+	to {
+		transform: rotate(75deg);
+		top: 29px;
+		left: 4px;
+	}
+	75%,
+	85% {
+		transform: rotate(65deg);
+	}
+}
+
+@keyframes darkKnightWeapon {
+	from,
+	60% {
+		transform: rotate(-20deg);
+		top: 118px;
+	}
+	70%,
+	to {
+		transform: rotate(25deg);
+		top: 85px;
+	}
+}
+
+@keyframes fdarkKnightWeapon {
+	from,
+	60% {
+		transform: rotate(-20deg);
+		top: 124px;
+	}
+	70%,
+	to {
+		transform: rotate(25deg);
+		top: 94px;
+	}
+}
+
+.animate .darkKnight.female .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -70px;
+	top: 120px;
+	animation: fdarkKnightWeapon 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.male .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -70px;
+	top: 130px;
+	animation: darkKnightWeapon 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.male .heroArmRightBtm {
+	transform: rotate(75deg);
+	top: 29px;
+	left: 4px;
+	animation: darkKnightLowerArm 9.8s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .darkKnight .heroRightArm {
+	transform: rotate(50deg);
+	left: 83px;
+	animation: darkKnightRightArm 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.female .heroArmRightBtm {
+	transform: rotate(75deg);
+	top: 29px;
+	left: 4px;
+	animation: fdarkKnightLowerArm 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight .heroBody,
+.animate .darkKnight .heroLeftArm,
+.animate .darkKnight .heroLegLeft,
+.animate .darkKnight .heroLegRight,
+.animate .darkKnight .heroHeadContainer,
+.animate .darkKnight .heroBehind {
+	animation: body 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.female .heroArmLeftTop {
+	animation: armTop 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.female .heroArmLeftBtm {
+	animation: armBtm 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight .backAppendage {
+	animation: idle-backAppendage 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.male .heroArmLeftBtm {
+	animation: armBtmMale 9.8s ease infinite alternate;
+}
+
+.animate .darkKnight.male .heroArmLeftTop {
+	animation: armTopMale 9.8s ease infinite alternate;
+}
+
+/*** DREAD KNIGHT ***/
+
+@keyframes dreadKnightLowerArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	to {
+		transform: rotate(75deg);
+		top: 29px;
+		left: 4px;
+	}
+}
+
+@keyframes dreadKnightRightArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	64% {
+		top: -5px;
+	}
+	70% {
+		transform: rotate(50deg);
+		left: 83px;
+		top: -3px;
+	}
+	75% {
+		left: 87px;
+	}
+	to {
+		transform: rotate(50deg);
+		left: 87px;
+		top: -3px;
+	}
+}
+
+@keyframes fdreadKnightLowerArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	to {
+		transform: rotate(75deg);
+		top: 29px;
+		left: 4px;
+	}
+}
+
+@keyframes dreadKnightWeapon {
+	from,
+	60% {
+		transform: rotate(-20deg);
+		top: 135px;
+	}
+	70%,
+	to {
+		transform: rotate(25deg);
+		top: 75px;
+	}
+}
+
+@keyframes fdreadKnightWeapon {
+	from,
+	60% {
+		transform: rotate(-20deg);
+		top: 138px;
+	}
+	70%,
+	to {
+		transform: rotate(25deg);
+		top: 80px;
+	}
+}
+
+.animate .dreadKnight.female .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -150px;
+	top: 135px;
+	animation: fdreadKnightWeapon 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.male .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -150px;
+	top: 130px;
+	animation: dreadKnightWeapon 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.male .heroArmRightBtm {
+	transform: rotate(75deg);
+	top: 29px;
+	left: 4px;
+	animation: dreadKnightLowerArm 10.2s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .dreadKnight .heroRightArm {
+	transform: rotate(50deg);
+	left: 83px;
+	animation: dreadKnightRightArm 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.female .heroArmRightBtm {
+	transform: rotate(75deg);
+	top: 29px;
+	left: 4px;
+	animation: fdreadKnightLowerArm 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight .heroBody,
+.animate .dreadKnight .heroLeftArm,
+.animate .dreadKnight .heroLegLeft,
+.animate .dreadKnight .heroLegRight,
+.animate .dreadKnight .heroHeadContainer,
+.animate .dreadKnight .heroBehind {
+	animation: body 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.female .heroArmLeftTop {
+	animation: armTop 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.female .heroArmLeftBtm {
+	animation: armBtm 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight .backAppendage {
+	animation: idle-backAppendage 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.male .heroArmLeftBtm {
+	animation: armBtmMale 10.2s ease infinite alternate;
+}
+
+.animate .dreadKnight.male .heroArmLeftTop {
+	animation: armTopMale 10.2s ease infinite alternate;
+}
+
+/*** SAGE ***/
+
+@keyframes sageHead {
+	from,
+	65% {
+		transform: rotate(0deg);
+		left: 0px;
+	}
+	72%,
+	to {
+		transform: rotate(5deg);
+		left: 5px;
+	}
+}
+
+@keyframes sageLowerArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	to {
+		transform: rotate(75deg);
+		top: 29px;
+		left: 4px;
+	}
+}
+
+@keyframes sageRightArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	64% {
+		top: -5px;
+	}
+	70%,
+	to {
+		transform: rotate(50deg);
+		left: 83px;
+		top: -3px;
+	}
+}
+
+@keyframes fsageLowerArm {
+	from,
+	60% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	70%,
+	to {
+		transform: rotate(75deg);
+		top: 29px;
+		left: 4px;
+	}
+}
+
+@keyframes sageWeapon {
+	from,
+	60% {
+		transform: rotate(-15deg);
+		top: 98px;
+		left: 25px;
+	}
+	70%,
+	to {
+		transform: rotate(-75deg);
+		top: 98px;
+		left: 25px;
+	}
+}
+
+@keyframes fsageWeapon {
+	from,
+	60% {
+		transform: rotate(-25deg);
+		top: 100px;
+		left: 22px;
+	}
+	70%,
+	to {
+		transform: rotate(-70deg);
+		top: 108px;
+		left: 20px;
+	}
+}
+
+@keyframes sageBlink {
+	from,
+	20%,
+	25%,
+	65% {
+		top: 64px;
+		height: 12px;
+	}
+	21%,
+	70%,
+	to {
+		top: 68px;
+		height: 4px;
+	}
+}
+
+@keyframes mSageBlink {
+	from,
+	20%,
+	25%,
+	65% {
+		top: 60px;
+		height: 12px;
+	}
+	21%,
+	70%,
+	to {
+		top: 64px;
+		height: 4px;
+	}
+}
+
+.animate .sage .heroHead {
+	z-index: 1;
+}
+
+.animate .sage.female .heroWeapon img {
+	transform: rotate(-20deg);
+	left: -150px;
+	top: 135px;
+	animation: fsageWeapon 10.2s ease infinite alternate;
+}
+
+.animate .sage.male .heroWeapon img {
+	transform: rotate(-15deg);
+	top: 98px;
+	left: 25px;
+	animation: sageWeapon 10.2s ease infinite alternate;
+}
+
+.animate .sage.male .heroArmRightBtm {
+	transform: rotate(75deg);
+	top: 29px;
+	left: 4px;
+	animation: sageLowerArm 10.2s ease infinite alternate;
+	z-index: 0;
+}
+
+.animate .sage .heroRightArm {
+	transform: rotate(50deg);
+	left: 83px;
+	animation: sageRightArm 10.2s ease infinite alternate;
+}
+
+.animate .sage.female .heroArmRightBtm {
+	transform: rotate(75deg);
+	top: 29px;
+	left: 4px;
+	animation: fsageLowerArm 10.2s ease infinite alternate;
+}
+
+.animate .sage.female .heroEyes {
+	z-index: 8;
+	top: 64px;
+	left: 48px;
+	height: 12px;
+	/* 3px * 4 */
+	width: 20px;
+	overflow: hidden;
+	animation: sageBlink 10.2s ease infinite alternate;
+}
+
+.animate .sage.male .heroEyes {
+	top: 60px;
+	animation: mSageBlink 10.2s ease infinite alternate;
+}
+
+/*** NINJA ***/
+
+@keyframes ninjaWeapon {
+	from,
+	10%,
+	80%,
+	90%,
+	to {
+		top: 118px;
+		left: -46px;
+		transform: rotate(0deg);
+	}
+	11%,
+	78% {
+		top: 140px;
+		left: -100px;
+	}
+	12%,
+	77% {
+		top: 155px;
+		left: -23px;
+		transform: rotate(290deg);
+	}
+}
+
+@keyframes mNinjaWeapon {
+	from,
+	10%,
+	80%,
+	90%,
+	to {
+		top: 114px;
+		left: -40px;
+		transform: rotate(0deg);
+	}
+	11%,
+	78% {
+		top: 140px;
+		left: -100px;
+	}
+	12%,
+	77% {
+		top: 148px;
+		left: -17px;
+		transform: rotate(290deg);
+	}
+}
+
+@keyframes ninjaRightArm {
+	from,
+	8% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	9.5% {
+		top: -8px;
+	}
+	11%,
+	80% {
+		transform: rotate(60deg);
+		left: 100px;
+		top: 2px;
+	}
+	84% {
+		top: -8px;
+	}
+	90%,
+	to {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+}
+
+@keyframes ninjaLowerArm {
+	from,
+	10%,
+	90%,
+	to {
+		transform: rotate(36deg);
+		top: 16px;
+		left: 10px;
+	}
+	15%,
+	76%,
+	80% {
+		transform: rotate(15deg);
+		top: 8px;
+		left: 8px;
+	}
+	77% {
+		transform: rotate(30deg);
+		top: 14px;
+		left: 5px;
+	}
+}
+
+@keyframes mNinjaLowerArm {
+	from,
+	10%,
+	90%,
+	to {
+		transform: rotate(36deg);
+		top: 16px;
+		left: 10px;
+	}
+	15%,
+	76%,
+	80% {
+		transform: rotate(15deg);
+		top: 8px;
+		left: 4px;
+	}
+	77% {
+		transform: rotate(30deg);
+		top: 14px;
+		left: 3px;
+	}
+}
+
+.animate .ninja .heroWeapon img {
+	transform: rotate(0deg);
+	animation: ninjaWeapon 11s ease-in-out infinite;
+}
+
+.animate .ninja.male .heroWeapon img {
+	transform: rotate(0deg);
+	animation: mNinjaWeapon 11s ease-in-out infinite;
+}
+
+.animate .ninja .heroRightArm {
+	animation: ninjaRightArm 11s ease infinite;
+}
+
+.animate .ninja .heroArmRightBtm {
+	animation: ninjaLowerArm 11s ease infinite;
+}
+
+.animate .ninja.male .heroArmRightBtm {
+	animation: mNinjaLowerArm 11s ease infinite;
+}
+
+/*** DRAGOON ***/
+
+@keyframes dragoonLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(70deg);
+		left: -4px;
+		top: 23px;
+	}
+}
+
+@keyframes fdragoonLowerArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(70deg);
+		left: -3px;
+		top: 29px;
+	}
+}
+
+@keyframes dragoonUpperArm {
+	from,
+	75% {
+		transform: rotate(0deg);
+		left: 0px;
+		top: 0px;
+	}
+	80%,
+	to {
+		transform: rotate(20deg);
+		left: 0px;
+		top: 2px;
+	}
+}
+
+.animate .dragoon.female .heroWeapon img {
+	transform: rotate(-70deg);
+	left: 6px;
+	top: 30px;
+}
+
+.animate .dragoon.male .heroWeapon img {
+	transform: rotate(-70deg);
+	left: 8px;
+	top: 34px;
+}
+
+.animate .dragoon .heroArmRightBtm {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	z-index: 0;
+}
+
+.animate .dragoon.male .heroArmRightBtm {
+	animation: dragoonLowerArm 9.5s ease infinite alternate;
+}
+
+.animate .dragoon.female .heroArmRightBtm {
+	animation: fdragoonLowerArm 9.5s ease infinite alternate;
+}
+
+.animate .dragoon .heroArmRightTop {
+	transform: rotate(0deg);
+	left: 0px;
+	top: 0px;
+	animation: dragoonUpperArm 9.5s ease infinite alternate;
+	z-index: 1;
+}
+
+.animate .dragoon .heroBody,
+.animate .dragoon .heroRightArm,
+.animate .dragoon .heroLeftArm,
+.animate .dragoon .heroLegLeft,
+.animate .dragoon .heroLegRight,
+.animate .dragoon .heroHeadContainer,
+.animate .dragoon .heroBehind {
+	animation: body 9.5s ease infinite alternate;
+}
+
+.animate .dragoon.female .heroArmLeftTop {
+	animation: armTop 9.5s ease infinite alternate;
+}
+
+.animate .dragoon.female .heroArmLeftBtm {
+	animation: armBtm 9.5s ease infinite alternate;
+}
+
+.animate .dragoon .backAppendage {
+	animation: idle-backAppendage 9.5s ease infinite alternate;
+}
+
+.animate .dragoon.male .heroArmLeftBtm {
+	animation: armBtmMale 9.5s ease infinite alternate;
+}
+
+.animate .dragoon.male .heroArmLeftTop {
+	animation: armTopMale 9.5s ease infinite alternate;
+}
