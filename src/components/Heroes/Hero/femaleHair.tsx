@@ -484,7 +484,6 @@ const getHair = (id: any): GetHairProps => {
 };
 
 const FemaleHair = ({ hairId, hairColor }: any) => {
-	console.log(hairColor);
 	const config = getHair(hairId);
 	const BackBase = config.backbase;
 	const FrontBase = config.frontbase;

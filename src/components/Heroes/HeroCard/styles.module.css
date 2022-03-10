@@ -1486,7 +1486,7 @@ CARD EFFECTS
 
 .heroCard.mythic .heroCardFrame:after {
 	content: "";
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/sparkles.gif");
+	background-image: url("../../../assets/images/hero/shiny/sparkles.gif");
 	background-size: 400% 400%;
 	background-blend-mode: soft-light;
 	filter: brightness(1) contrast(1);
@@ -1623,77 +1623,77 @@ CARD EFFECTS
 
 .heroCard.shiny0 .heroCardFront:before,
 .heroCard.shiny0 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny00.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny00.gif");
 }
 
 .heroCard.shiny1 .heroCardFront:before,
 .heroCard.shiny1 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny01.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny01.gif");
 }
 
 .heroCard.shiny2 .heroCardFront:before,
 .heroCard.shiny2 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny02.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny02.gif");
 }
 
 .heroCard.shiny3 .heroCardFront:before,
 .heroCard.shiny3 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny03.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny03.gif");
 }
 
 .heroCard.shiny4 .heroCardFront:before,
 .heroCard.shiny4 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny04.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny04.gif");
 }
 
 .heroCard.shiny5 .heroCardFront:before,
 .heroCard.shiny5 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny05.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny05.gif");
 }
 
 .heroCard.shiny6 .heroCardFront:before,
 .heroCard.shiny6 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny06.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny06.gif");
 }
 
 .heroCard.shiny7 .heroCardFront:before,
 .heroCard.shiny7 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny07.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny07.gif");
 }
 
 .heroCard.shiny8 .heroCardFront:before,
 .heroCard.shiny8 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny08.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny08.gif");
 }
 
 .heroCard.shiny9 .heroCardFront:before,
 .heroCard.shiny9 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny09.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny09.gif");
 }
 
 .heroCard.shiny10 .heroCardFront:before,
 .heroCard.shiny10 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny10.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny10.gif");
 }
 
 .heroCard.shiny11 .heroCardFront:before,
 .heroCard.shiny11 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny11.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny11.gif");
 }
 
 .heroCard.shiny12 .heroCardFront:before,
 .heroCard.shiny12 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny12.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny12.gif");
 }
 
 .heroCard.shiny13 .heroCardFront:before,
 .heroCard.shiny13 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny13.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny13.gif");
 }
 
 .heroCard.shiny14 .heroCardFront:before,
 .heroCard.shiny14 .heroCardBack:before {
-	background-image: url("https://dfk-hv.b-cdn.net/art-assets/shiny/shiny14.gif");
+	background-image: url("../../../assets/images/hero/shiny/shiny14.gif");
 }
 
 /**

@@ -32,9 +32,7 @@ const fetchHeroRaw = async (heroId: any) => {
 				heroOwnerAddress
 			);
 			const heroRaw = await hero_Contract.getHero(heroId);
-			console.log(heroRaw);
 			const hero = await buildHero(heroRaw, profileInfo);
-			console.log(hero);
 
 			return hero;
 		}
