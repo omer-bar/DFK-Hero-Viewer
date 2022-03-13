@@ -72,7 +72,7 @@ const HeroStatsSkills = ({ hero }: HeroStatsSkillsProps) => {
 					<div className={styles.skillList}>
 						<div
 							className={`${styles.skillName} ${
-								hero.statGenes.profession == "mining" ? styles.chosen : ""
+								hero.statGenes.profession === "mining" ? styles.chosen : ""
 							}`}
 						>
 							Mining
@@ -83,7 +83,7 @@ const HeroStatsSkills = ({ hero }: HeroStatsSkillsProps) => {
 						</div>
 						<div
 							className={`${styles.skillName} ${
-								hero.statGenes.profession == "gardening" ? styles.chosen : ""
+								hero.statGenes.profession === "gardening" ? styles.chosen : ""
 							}`}
 						>
 							Gardening
@@ -94,7 +94,7 @@ const HeroStatsSkills = ({ hero }: HeroStatsSkillsProps) => {
 						</div>
 						<div
 							className={`${styles.skillName} ${
-								hero.statGenes.profession == "fishing" ? styles.chosen : ""
+								hero.statGenes.profession === "fishing" ? styles.chosen : ""
 							}`}
 						>
 							Fishing
@@ -105,7 +105,7 @@ const HeroStatsSkills = ({ hero }: HeroStatsSkillsProps) => {
 						</div>
 						<div
 							className={`${styles.skillName} ${
-								hero.statGenes.profession == "foraging" ? styles.chosen : ""
+								hero.statGenes.profession === "foraging" ? styles.chosen : ""
 							}`}
 						>
 							Foraging

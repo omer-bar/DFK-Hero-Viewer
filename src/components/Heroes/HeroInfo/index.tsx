@@ -24,9 +24,9 @@ const HeroInfo = ({ hero }: HeroInfoProps) => {
 		staminaFullAtString: staminaFullAtString,
 	};
 	const summonPercentage =
-		hero.generation == 0
+		hero.generation === 0
 			? 100
-			: hero.maxSummons == 0
+			: hero.maxSummons === 0
 			? 0
 			: ((hero.maxSummons - hero.summons) / hero.maxSummons) * 100;
 	const xpNextLevel = calculateRequiredXp(hero.level);

@@ -33,8 +33,8 @@ interface HeroProps {
 
 const HeadFemale = ({ stroke }: Props) => (
 	<React.Fragment>
-		<img src={FemaleHeadHighlight} className={styles.highlight} />
-		<img src={FemaleHeadShadow} className={styles.shadow} />
+		<img src={FemaleHeadHighlight} className={styles.highlight} alt="" />
+		<img src={FemaleHeadShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -51,8 +51,8 @@ const HeadFemale = ({ stroke }: Props) => (
 
 const HeadMale = ({ stroke }: Props) => (
 	<React.Fragment>
-		<img src={MaleHeadHighlight} className={styles.highlight} />
-		<img src={MaleHeadShadow} className={styles.shadow} />
+		<img src={MaleHeadHighlight} className={styles.highlight} alt="" />
+		<img src={MaleHeadShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -97,7 +97,7 @@ const Hero = ({ hero, noCard, onClick }: HeroProps) => {
 			>
 				<div className={styles.heroContainer}>
 					<div className={styles.heroHeadContainer}>
-						{hero.gender == "female" && (
+						{hero.gender === "female" && (
 							<FemaleHair
 								hairId={hero.visualGenes.hairStyle}
 								hairColor={hero.visualGenes.hairColor}
