@@ -35,20 +35,20 @@ function ShowHero() {
 	useEffect(() => {
 		fetchHero();
 		console.log("hero rendered");
-	}, [HeroCard]);
+	}, []);
 
 	return (
 		<>
-			<div className="container-2">
-				<div className="front-card">
-					{hero && (
+			{hero && (
+				<div className="container-2">
+					<div className="front-card">
 						<HeroCard hero={hero} isFlipped={false} isAnimated={false} />
-					)}
+					</div>
+					<div className="back-card">
+						<HeroCard hero={hero} isFlipped={true} isAnimated={false} />
+					</div>
 				</div>
-				<div className="back-card">
-					{hero && <HeroCard hero={hero} isFlipped={true} isAnimated={false} />}
-				</div>
-			</div>
+			)}
 		</>
 	);
 }
