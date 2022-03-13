@@ -169,7 +169,7 @@ const Appendage = ({ overlay, stroke, baseString }: any) => {
 	return (
 		<div className={styles.headAppendage}>
 			<React.Fragment>
-				<img src={overlay} className={styles.overlay} />
+				<img src={overlay} className={styles.overlay} alt="" />
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 -0.5 59 45"

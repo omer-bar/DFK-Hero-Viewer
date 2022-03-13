@@ -492,8 +492,12 @@ const FemaleHair = ({ hairId, hairColor }: any) => {
 			{config.backbase && (
 				<div className={`${styles.heroHairBack} ${styles.hair}`}>
 					<React.Fragment>
-						<img src={config.backhighlight} className={styles.highlight} />
-						<img src={config.backshadow} className={styles.shadow} />
+						<img
+							src={config.backhighlight}
+							className={styles.highlight}
+							alt=""
+						/>
+						<img src={config.backshadow} className={styles.shadow} alt="" />
 						<BackBase className={styles.color} stroke={`#${hairColor}`} />
 					</React.Fragment>
 				</div>
@@ -501,8 +505,12 @@ const FemaleHair = ({ hairId, hairColor }: any) => {
 			{config.frontbase && (
 				<div className={`${styles.heroHairFront} ${styles.hair}`}>
 					<React.Fragment>
-						<img src={config.fronthighlight} className={styles.highlight} />
-						<img src={config.frontshadow} className={styles.shadow} />
+						<img
+							src={config.fronthighlight}
+							className={styles.highlight}
+							alt=""
+						/>
+						<img src={config.frontshadow} className={styles.shadow} alt="" />
 						<FrontBase className={styles.color} stroke={`#${hairColor}`} />
 					</React.Fragment>
 				</div>

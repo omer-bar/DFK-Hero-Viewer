@@ -170,7 +170,7 @@ const Appendage = ({ overlay, stroke, baseString, backId }: any) => {
 
 	return (
 		<React.Fragment>
-			<img src={overlay} className={styles.overlay} />
+			<img src={overlay} className={styles.overlay} alt="" />
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 -0.5 59 45"
@@ -178,7 +178,7 @@ const Appendage = ({ overlay, stroke, baseString, backId }: any) => {
 				className={styles.color}
 			>
 				<path stroke={stroke} d={baseString} />
-				{backId == 11 && <path stroke={stroke} d="M16 31h1M32 31h1" />}
+				{backId === 11 && <path stroke={stroke} d="M16 31h1M32 31h1" />}
 			</svg>
 		</React.Fragment>
 	);

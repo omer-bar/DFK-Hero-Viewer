@@ -158,10 +158,10 @@ const FemaleBody = ({ mainClass, stroke }: any) => {
 	return (
 		<>
 			<div className={`${styles.heroBody} ${styles.bodyPart}`}>
-				<img src={FemaleUndies} className={styles.heroUndies} />
-				<img src={config.body} className={styles.clothing} />
-				<img src={FemaleBodyHighlight} className={styles.highlight} />
-				<img src={FemaleBodyShadow} className={styles.shadow} />
+				<img src={FemaleUndies} className={styles.heroUndies} alt="" />
+				<img src={config.body} className={styles.clothing} alt="" />
+				<img src={FemaleBodyHighlight} className={styles.highlight} alt="" />
+				<img src={FemaleBodyShadow} className={styles.shadow} alt="" />
 
 				{/* Body svg in female folder */}
 				<svg
@@ -177,7 +177,7 @@ const FemaleBody = ({ mainClass, stroke }: any) => {
 				</svg>
 			</div>
 			<div className={`${styles.heroBehind} ${styles.bodyPart}`}>
-				<img src={config.behind} className={styles.clothing} />
+				<img src={config.behind} className={styles.clothing} alt="" />
 			</div>
 		</>
 	);

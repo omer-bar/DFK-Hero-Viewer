@@ -9,8 +9,8 @@ import { ReactComponent as EyesBase } from "../../../assets/images/hero/eyes-col
 const HeroEyes = ({ eyeColor }: any) => {
 	return (
 		<>
-			<img src={EyesHighlight} className={styles.highlight} />
-			<img src={EyesShadow} className={styles.shadow} />
+			<img src={EyesHighlight} className={styles.highlight} alt="" />
+			<img src={EyesShadow} className={styles.shadow} alt="" />
 			<EyesBase stroke={`#${eyeColor}`} className={styles.color} />
 		</>
 	);

@@ -283,9 +283,9 @@ const RightArmTopFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={armTop} className={styles.clothing} />
-		<img src={armTopHighlight} className={styles.highlight} />
-		<img src={armTopShadow} className={styles.shadow} />
+		<img src={armTop} className={styles.clothing} alt="" />
+		<img src={armTopHighlight} className={styles.highlight} alt="" />
+		<img src={armTopShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -307,9 +307,9 @@ const RightArmBtmFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={armBtm} className={styles.clothing} />
-		<img src={armBtmHighlight} className={styles.highlight} />
-		<img src={armBtmShadow} className={styles.shadow} />
+		<img src={armBtm} className={styles.clothing} alt="" />
+		<img src={armBtmHighlight} className={styles.highlight} alt="" />
+		<img src={armBtmShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -331,9 +331,9 @@ const LeftArmTopFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={armTop} className={styles.clothing} />
-		<img src={armTopHighlight} className={styles.highlight} />
-		<img src={armTopShadow} className={styles.shadow} />
+		<img src={armTop} className={styles.clothing} alt="" />
+		<img src={armTopHighlight} className={styles.highlight} alt="" />
+		<img src={armTopShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -355,9 +355,9 @@ const LeftArmBtmFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={armBtm} className={styles.clothing} />
-		<img src={armBtmHighlight} className={styles.highlight} />
-		<img src={armBtmShadow} className={styles.shadow} />
+		<img src={armBtm} className={styles.clothing} alt="" />
+		<img src={armBtmHighlight} className={styles.highlight} alt="" />
+		<img src={armBtmShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -392,9 +392,13 @@ const FemaleArms = ({ mainClass, stroke }: any) => {
 						armBtmHighlight={femaleRightarmbtmhighlight}
 						stroke={stroke}
 					/>
-					{mainClass != "monk" && (
+					{mainClass !== "monk" && (
 						<div className={styles.heroWeapon}>
-							<img src={classInfo.classWeapon} className={styles.clothing} />
+							<img
+								src={classInfo.classWeapon}
+								className={styles.clothing}
+								alt=""
+							/>
 						</div>
 					)}
 				</div>
@@ -415,9 +419,13 @@ const FemaleArms = ({ mainClass, stroke }: any) => {
 						armBtmHighlight={femaleLeftarmbtmhighlight}
 						stroke={stroke}
 					/>
-					{mainClass == "monk" && (
+					{mainClass === "monk" && (
 						<div className={styles.heroWeapon}>
-							<img src={classInfo.classWeapon} className={styles.clothing} />
+							<img
+								src={classInfo.classWeapon}
+								className={styles.clothing}
+								alt=""
+							/>
 						</div>
 					)}
 				</div>

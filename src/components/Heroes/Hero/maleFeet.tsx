@@ -155,9 +155,9 @@ const getClassInfo = (mainClass: any): GetClassInfoProps => {
 
 const LeftFootMale = ({ leftFoot, stroke }: any) => (
 	<React.Fragment>
-		<img src={leftFoot} className={styles.clothing} />
-		<img src={MaleLeftFootHighlight} className={styles.highlight} />
-		<img src={MaleLeftFootShadow} className={styles.shadow} />
+		<img src={leftFoot} className={styles.clothing} alt="" />
+		<img src={MaleLeftFootHighlight} className={styles.highlight} alt="" />
+		<img src={MaleLeftFootShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -171,9 +171,9 @@ const LeftFootMale = ({ leftFoot, stroke }: any) => (
 
 const RightFootMale = ({ rightFoot, stroke }: any) => (
 	<React.Fragment>
-		<img src={rightFoot} className={styles.clothing} />
-		<img src={MaleRightFootHighlight} className={styles.highlight} />
-		<img src={MaleRightFootShadow} className={styles.shadow} />
+		<img src={rightFoot} className={styles.clothing} alt="" />
+		<img src={MaleRightFootHighlight} className={styles.highlight} alt="" />
+		<img src={MaleRightFootShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"

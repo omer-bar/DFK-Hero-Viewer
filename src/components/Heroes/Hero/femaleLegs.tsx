@@ -230,9 +230,9 @@ const LeftLegFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={legTop} className={styles.clothing} />
-		<img src={legTopHighlight} className={styles.highlight} />
-		<img src={legTopShadow} className={styles.shadow} />
+		<img src={legTop} className={styles.clothing} alt="" />
+		<img src={legTopHighlight} className={styles.highlight} alt="" />
+		<img src={legTopShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -254,9 +254,9 @@ const RightLegFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={legTop} className={styles.clothing} />
-		<img src={legTopHighlight} className={styles.highlight} />
-		<img src={legTopShadow} className={styles.shadow} />
+		<img src={legTop} className={styles.clothing} alt="" />
+		<img src={legTopHighlight} className={styles.highlight} alt="" />
+		<img src={legTopShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -278,9 +278,9 @@ const LeftLegBtmFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={legBottom} className={styles.clothing} />
-		<img src={legBottomHighlight} className={styles.highlight} />
-		<img src={legBottomShadow} className={styles.shadow} />
+		<img src={legBottom} className={styles.clothing} alt="" />
+		<img src={legBottomHighlight} className={styles.highlight} alt="" />
+		<img src={legBottomShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
@@ -299,9 +299,9 @@ const RightLegBtmFemale = ({
 	stroke,
 }: any) => (
 	<React.Fragment>
-		<img src={legBottom} className={styles.clothing} />
-		<img src={legBottomHighlight} className={styles.highlight} />
-		<img src={legBottomShadow} className={styles.shadow} />
+		<img src={legBottom} className={styles.clothing} alt="" />
+		<img src={legBottomHighlight} className={styles.highlight} alt="" />
+		<img src={legBottomShadow} className={styles.shadow} alt="" />
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 -0.5 30 45"
