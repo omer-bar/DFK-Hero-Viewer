@@ -194,6 +194,7 @@ BASE CARD DESIGN
 	visibility: visible;
 	opacity: 1;
 	transition: all 1s ease;
+	z-index: 1;
 }
 
 .heroCardFrame {
