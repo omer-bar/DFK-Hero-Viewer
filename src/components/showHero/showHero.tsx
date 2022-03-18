@@ -8,7 +8,7 @@ interface heroData {
 }
 
 function ShowHero() {
-	let [searchParams, setSearchParams] = useSearchParams();
+	let [searchParams] = useSearchParams();
 	const [hero, setHero] = useState<heroData | any>(null);
 
 	let heroId = searchParams.get("hero_id");
@@ -32,9 +32,34 @@ function ShowHero() {
 		setHero(hero);
 	};
 
+	// const printCard = () => {
+	// 	console.log("printing card now");
+	// 	return;
+	// };
+
 	useEffect(() => {
 		fetchHero();
-		console.log("hero rendered");
+
+		// const waitForElementToDisplay = async (
+		// 	selector: string,
+		// 	callback: any,
+		// 	checkFrequencyInMs: number,
+		// 	timeoutInMs: number
+		// ) => {
+		// 	let startTimeInMs = Date.now();
+		// 	const loopSearch = () => {
+		// 		if (document.querySelector(selector) !== null) {
+		// 			callback();
+		// 			return;
+		// 		} else {
+		// 			setTimeout(() => {
+		// 				if (timeoutInMs && Date.now() - startTimeInMs > timeoutInMs) return;
+		// 				loopSearch();
+		// 			}, checkFrequencyInMs);
+		// 		}
+		// 	};
+		// };
+		// waitForElementToDisplay(".container-2", printCard(), 1000, 9000);
 	}, []);
 
 	return (
