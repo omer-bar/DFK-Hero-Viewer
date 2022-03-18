@@ -49,7 +49,6 @@ import manaIcon from "../../../assets/images/hero/icons/icon-mana.png";
 // new imports
 import statsIcon from "../../../assets/images/hero/icons/stats-icon.png";
 import growthIcon from "../../../assets/images/hero/icons/growth-icon.png";
-import boostIcon from "../../../assets/images/gui/boost_reward_2x.png";
 import survivorIcon from "../../../assets/images/gui/survivor_badge_2x.png";
 
 interface HeroCardProps {
@@ -67,15 +66,6 @@ const HeroCard = ({
 	isStatGrowth,
 }: HeroCardProps) => {
 	const [dataPageIndex, setDataPageIndex] = useState(0);
-	const [SelectedStatBoostHero, setSelectedStatBoostHero] = useState();
-	const [ShowSurvivorStatBoostModal, setShowSurvivorStatBoostModal] = useState(
-		false
-	);
-
-	const redirectToStatBoost = () => {
-		setSelectedStatBoostHero(hero);
-		setShowSurvivorStatBoostModal(true);
-	};
 
 	// Stats shown for newly summoned heroes that don't have all data available.
 	let dataPages = [
@@ -223,58 +213,61 @@ const HeroCard = ({
 							)}
 							<div className={styles.heroID}>#{hero.id}</div>
 							<div className={styles.heroHealth}>
-								<img src={healthIcon} />
+								<img src={healthIcon} alt="" />
 								{hero.stats.hp}
 								<span className={styles.tooltip}>Health</span>
 							</div>
 							<div className={styles.heroMana}>
-								<img src={manaIcon} />
+								<img src={manaIcon} alt="" />
 								{hero.stats.mp}
 								<span className={styles.tooltip}>Mana</span>
 							</div>
 							<div className={styles.heroCardFrame}>
 								<div className={`${styles.specials} ${styles.row}`}>
 									<div className={styles.icon}>
-										{hero.element == "fire" && <img src={fireIcon} />}
-										{hero.element == "water" && <img src={waterIcon} />}
-										{hero.element == "earth" && <img src={earthIcon} />}
-										{hero.element == "wind" && <img src={windIcon} />}
-										{hero.element == "lightning" && <img src={lightningIcon} />}
-										{hero.element == "ice" && <img src={iceIcon} />}
-										{hero.element == "light" && <img src={lightIcon} />}
-										{hero.element == "dark" && <img src={darkIcon} />}
+										{hero.element === "fire" && <img src={fireIcon} alt="" />}
+										{hero.element === "water" && <img src={waterIcon} alt="" />}
+										{hero.element === "earth" && <img src={earthIcon} alt="" />}
+										{hero.element === "wind" && <img src={windIcon} alt="" />}
+										{hero.element === "lightning" && (
+											<img src={lightningIcon} alt="" />
+										)}
+										{hero.element === "ice" && <img src={iceIcon} alt="" />}
+										{hero.element === "light" && <img src={lightIcon} alt="" />}
+										{hero.element === "dark" && <img src={darkIcon} alt="" />}
 										<span className={styles.tooltip}>{hero.element}</span>
 									</div>
 									<div className={styles.icon}>
-										{hero.visualGenes.background == "arctic" && (
-											<img src={arcticIcon} />
+										{hero.visualGenes.background === "arctic" && (
+											<img src={arcticIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "city" && (
-											<img src={cityIcon} />
+										{hero.visualGenes.background === "city" && (
+											<img src={cityIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "desert" && (
-											<img src={desertIcon} />
+										{hero.visualGenes.background === "desert" && (
+											<img src={desertIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "forest" && (
-											<img src={forestIcon} />
+										{hero.visualGenes.background === "forest" && (
+											<img src={forestIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "island" && (
-											<img src={islandIcon} />
+										{hero.visualGenes.background === "island" && (
+											<img src={islandIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "mountains" && (
-											<img src={mountainIcon} />
+										{hero.visualGenes.background === "mountains" && (
+											<img src={mountainIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "plains" && (
-											<img src={plainsIcon} />
+										{hero.visualGenes.background === "plains" && (
+											<img src={plainsIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "swamp" && (
-											<img src={swampIcon} />
+										{hero.visualGenes.background === "swamp" && (
+											<img src={swampIcon} alt="" />
 										)}
 										<span className={styles.tooltip}>{hero.background}</span>
 									</div>
 									<div className={styles.icon}>
 										<img
-											src={hero.gender == "female" ? femaleIcon : maleIcon}
+											src={hero.gender === "female" ? femaleIcon : maleIcon}
+											alt=""
 										/>
 										<span className={styles.tooltip}>{hero.gender}</span>
 									</div>
@@ -296,13 +289,19 @@ const HeroCard = ({
 									</div>
 									<div className={styles.cardRarity}>
 										<div className={styles.icon}>
-											{hero.rarity == "common" && <img src={commonIcon} />}
-											{hero.rarity == "uncommon" && <img src={uncommonIcon} />}
-											{hero.rarity == "rare" && <img src={rareIcon} />}
-											{hero.rarity == "legendary" && (
-												<img src={legendaryIcon} />
+											{hero.rarity === "common" && (
+												<img src={commonIcon} alt="" />
 											)}
-											{hero.rarity == "mythic" && <img src={mythicIcon} />}
+											{hero.rarity === "uncommon" && (
+												<img src={uncommonIcon} alt="" />
+											)}
+											{hero.rarity === "rare" && <img src={rareIcon} alt="" />}
+											{hero.rarity === "legendary" && (
+												<img src={legendaryIcon} alt="" />
+											)}
+											{hero.rarity === "mythic" && (
+												<img src={mythicIcon} alt="" />
+											)}
 											<span className={styles.tooltip}>{hero.rarity}</span>
 										</div>
 									</div>
@@ -321,46 +320,49 @@ const HeroCard = ({
 							<div className={styles.heroCardFrame}>
 								<div className={`${styles.specials} ${styles.row}`}>
 									<div className={styles.icon}>
-										{hero.element == "fire" && <img src={fireIcon} />}
-										{hero.element == "water" && <img src={waterIcon} />}
-										{hero.element == "earth" && <img src={earthIcon} />}
-										{hero.element == "wind" && <img src={windIcon} />}
-										{hero.element == "lightning" && <img src={lightningIcon} />}
-										{hero.element == "ice" && <img src={iceIcon} />}
-										{hero.element == "light" && <img src={lightIcon} />}
-										{hero.element == "dark" && <img src={darkIcon} />}
+										{hero.element === "fire" && <img src={fireIcon} alt="" />}
+										{hero.element === "water" && <img src={waterIcon} alt="" />}
+										{hero.element === "earth" && <img src={earthIcon} alt="" />}
+										{hero.element === "wind" && <img src={windIcon} alt="" />}
+										{hero.element === "lightning" && (
+											<img src={lightningIcon} alt="" />
+										)}
+										{hero.element === "ice" && <img src={iceIcon} alt="" />}
+										{hero.element === "light" && <img src={lightIcon} alt="" />}
+										{hero.element === "dark" && <img src={darkIcon} alt="" />}
 										<span className={styles.tooltip}>{hero.element}</span>
 									</div>
 									<div className={styles.icon}>
-										{hero.visualGenes.background == "arctic" && (
-											<img src={arcticIcon} />
+										{hero.visualGenes.background === "arctic" && (
+											<img src={arcticIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "city" && (
-											<img src={cityIcon} />
+										{hero.visualGenes.background === "city" && (
+											<img src={cityIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "desert" && (
-											<img src={desertIcon} />
+										{hero.visualGenes.background === "desert" && (
+											<img src={desertIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "forest" && (
-											<img src={forestIcon} />
+										{hero.visualGenes.background === "forest" && (
+											<img src={forestIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "island" && (
-											<img src={islandIcon} />
+										{hero.visualGenes.background === "island" && (
+											<img src={islandIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "mountains" && (
-											<img src={mountainIcon} />
+										{hero.visualGenes.background === "mountains" && (
+											<img src={mountainIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "plains" && (
-											<img src={plainsIcon} />
+										{hero.visualGenes.background === "plains" && (
+											<img src={plainsIcon} alt="" />
 										)}
-										{hero.visualGenes.background == "swamp" && (
-											<img src={swampIcon} />
+										{hero.visualGenes.background === "swamp" && (
+											<img src={swampIcon} alt="" />
 										)}
 										<span className={styles.tooltip}>{hero.background}</span>
 									</div>
 									<div className={styles.icon}>
 										<img
-											src={hero.gender == "female" ? femaleIcon : maleIcon}
+											src={hero.gender === "female" ? femaleIcon : maleIcon}
+											alt=""
 										/>
 										<span className={styles.tooltip}>{hero.gender}</span>
 									</div>
