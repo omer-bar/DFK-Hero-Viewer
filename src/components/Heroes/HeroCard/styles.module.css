@@ -176,6 +176,18 @@ BASE CARD DESIGN
 	transition: transform 1s;
 }
 
+.perilousJourneyIcon {
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	padding: 0;
+	background-color: transparent;
+	border: 0;
+	z-index: 10;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+}
+
 .heroCardFront,
 .heroCardBack {
 	background-image: url(../../../assets/images/hero/cards/commonCardBackground.png);
@@ -235,6 +247,7 @@ BASE CARD DESIGN
 
 .heroCardBack .heroStats {
 	height: calc(100% - 20px);
+	width: 100%;
 }
 
 .heroCardBack .heroFrame {
@@ -1379,6 +1392,30 @@ SKILL LIST
 	font-size: 20px;
 }
 
+.heroStatsList .heroStats h4 {
+	margin: 1em 0 0.5em;
+	font-size: 16px;
+	position: relative;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #f0b85950;
+}
+
+.heroStatsList .heroStats h4:before {
+	content: "";
+	background-image: url("../../../assets/images/hero/icons/mid-jewel.png");
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 .statList {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -1478,6 +1515,113 @@ SKILL LIST
 	text-align: center;
 	align-self: start;
 	margin-top: -0.5em;
+}
+
+.statsToggle {
+	display: flex;
+	position: absolute;
+	z-index: 10;
+	bottom: 6px;
+	height: 27px;
+	left: 0px;
+	width: 80%;
+	margin-left: 10%;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 0.25) 50%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+.statsToggleButton {
+	font-size: 9px;
+	border: 1px solid transparent;
+	background: none;
+	line-height: 1;
+	margin: 0 4px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: 700;
+	position: relative;
+}
+
+.statsToggleButton .tooltip {
+	top: -200%;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 5px 8px;
+}
+
+.statsToggleButton:hover .tooltip {
+	top: -160%;
+	visibility: visible;
+	opacity: 1;
+}
+
+.statsToggleButtonImage {
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+	background-position: top left;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: pixelated;
+	background-size: cover;
+	background-repeat: no-repeat;
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.statsToggleButtonImageActiveCursor {
+	cursor: url("../../../assets/images/gui/click-cursor-2x.png"), auto;
+}
+
+.statsToggleButtonImage:hover {
+	filter: invert(100%);
+}
+
+.statsToggleButtonImageActive {
+	background-position: top right;
+}
+
+.statsToggleButtonImageActive:hover {
+	filter: invert(0%);
+}
+
+.sliderToggle {
+	position: absolute;
+	top: 50%;
+	z-index: 3;
+	opacity: 0.65;
+	line-height: 1;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: -12px;
+	cursor: pointer;
+}
+
+.sliderToggleCursor {
+	cursor: url("../../../assets/images/gui/click-cursor-2x.png"), auto;
+}
+
+.sliderToggle:hover,
+.sliderToggle:focus,
+.sliderToggle:active {
+	opacity: 0.85;
+}
+
+.sliderLeft {
+	left: 2px;
+}
+
+.sliderRight {
+	right: 2px;
 }
 
 /***
@@ -1739,7 +1883,8 @@ BASED ON RARITY OR PARTNERSHIPS
 .uncommon .heroMana,
 .uncommon .heroFrame,
 .uncommon .heroID,
-.uncommon .heroName span {
+.uncommon .heroName span,
+.uncommon .sliderToggle {
 	color: #c4e3d0;
 }
 
@@ -1780,7 +1925,8 @@ BASED ON RARITY OR PARTNERSHIPS
 .rare .heroMana,
 .rare .heroFrame,
 .rare .heroID,
-.rare .heroName span {
+.rare .heroName span,
+.rare .sliderToggle {
 	color: #bff3ed;
 }
 
@@ -1821,7 +1967,8 @@ BASED ON RARITY OR PARTNERSHIPS
 .legendary .heroMana,
 .legendary .heroFrame,
 .legendary .heroID,
-.legendary .heroName span {
+.legendary .heroName span,
+.legendary .sliderToggle {
 	color: #ffca72;
 }
 
@@ -1862,7 +2009,8 @@ BASED ON RARITY OR PARTNERSHIPS
 .mythic .heroMana,
 .mythic .heroFrame,
 .mythic .heroID,
-.mythic .heroName span {
+.mythic .heroName span,
+.mythic .sliderToggle {
 	color: #f7dcff;
 }
 

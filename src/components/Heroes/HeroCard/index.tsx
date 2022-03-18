@@ -1,10 +1,20 @@
-import React from "react"; // useState
+import React, { useState } from "react"; // useState
 import styled from "styled-components";
 import styles from "./styles.module.css";
 
+// ------------ new features ----------------------
+import { ChevronLeft, ChevronRight } from "react-feather";
+// import { useDispatch, useSelector } from "features/hooks";
+// import {
+// 	setSelectedStatBoostHero,
+// 	setShowSurvivorStatBoostModal,
+// } from "features/journey/state";
+// ------------ end of new features ---------------
+
 import Hero from "../Hero";
-import HeroInfo from "../HeroInfo/index";
-import HeroStatsSkills from "../HeroStatsSkills/index";
+import HeroInfo from "../HeroInfo";
+import HeroStatsSkills from "../HeroStatsSkills";
+import HeroStatsGrowth from "../HeroStatsGrowth";
 
 import femaleIcon from "../../../assets/images/hero/icons/icon-female.png";
 import maleIcon from "../../../assets/images/hero/icons/icon-male.png";
@@ -36,21 +46,17 @@ import mythicIcon from "../../../assets/images/hero/icons/rarity-mythic.png";
 import healthIcon from "../../../assets/images/hero/icons/icon-health.png";
 import manaIcon from "../../../assets/images/hero/icons/icon-mana.png";
 
+// new imports
+import statsIcon from "../../../assets/images/hero/icons/stats-icon.png";
+import growthIcon from "../../../assets/images/hero/icons/growth-icon.png";
+import boostIcon from "../../../assets/images/gui/boost_reward_2x.png";
+import survivorIcon from "../../../assets/images/gui/survivor_badge_2x.png";
+
 interface HeroCardProps {
 	isFlipped: boolean;
 	hero: any;
 	isAnimated?: boolean;
 }
-
-// Styled Components
-const CardContainer = styled.div.attrs((props) => ({
-	className: "cardContainer",
-}))`
-	perspective: 1000px;
-	width: 300px;
-	height: 430px;
-	margin: 0 auto;
-`;
 
 /* exported component */
 const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
@@ -82,6 +88,13 @@ const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
 								<span className={styles.tooltip}>Mana</span>
 							</div>
 							<div className={styles.heroCardFrame}>
+								{hero.pjstatus === "SURVIVED" && (
+									<img
+										className={styles.perilousJourneyIcon}
+										src={survivorIcon}
+										alt=""
+									/>
+								)}
 								<div className={`${styles.specials} ${styles.row}`}>
 									<div className={styles.icon}>
 										{hero.element === "fire" && <img src={fireIcon} alt="" />}
@@ -251,3 +264,13 @@ const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
 };
 
 export default React.memo(HeroCard);
+
+// Styled Components
+const CardContainer = styled.div.attrs((props) => ({
+	className: "cardContainer",
+}))`
+	perspective: 1000px;
+	width: 300px;
+	height: 430px;
+	margin: 0 auto;
+`;

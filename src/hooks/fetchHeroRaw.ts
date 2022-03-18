@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import axios from "axios";
 import buildHero from "../components/Heroes/HeroInfo/utils/heroes";
 
 const RPC_ADDRESS = "https://harmony-0-rpc.gateway.pokt.network";
@@ -16,11 +17,32 @@ const profileABI = [
     {"inputs":[{"internalType":"address","name":"profileAddress","type":"address"}],"name":"getProfileByAddress","outputs":[{"internalType":"uint256","name":"_id","type":"uint256"},{"internalType":"address","name":"_owner","type":"address"},{"internalType":"string","name":"_name","type":"string"},{"internalType":"uint64","name":"_created","type":"uint64"},{"internalType":"uint8","name":"_picId","type":"uint8"},{"internalType":"uint256","name":"_heroId","type":"uint256"}],"stateMutability":"view","type":"function"},
 ]
 
+const getPJData = async (heroId: any) => {
+	const request = await axios.post(
+		"https://defi-kingdoms-community-api-gateway-co06z8vi.uc.gateway.dev/graphql",
+		{
+			query: `query {
+            hero(id: ${heroId}) {
+            id
+            pjStatus
+            pjLevel
+          }
+        }
+        `,
+		}
+	);
+
+	const { pjLevel, pjStatus } = request.data.data.hero;
+
+	return { pjLevel, pjStatus };
+};
+
 const fetchHeroRaw = async (heroId: any) => {
 	try {
 		const Provider = new ethers.providers.JsonRpcProvider(RPC_ADDRESS);
 		if (await Provider.ready) {
 			let hero_Contract = new ethers.Contract(heroContract, heroABI, Provider);
+
 			let profile_Contract = new ethers.Contract(
 				profileContract,
 				profileABI,
@@ -34,12 +56,18 @@ const fetchHeroRaw = async (heroId: any) => {
 				);
 				const heroRaw = await hero_Contract.getHero(heroId);
 				const hero = await buildHero(heroRaw, profileInfo);
+				const pjData = await getPJData(heroId);
+				hero.pjlevel = pjData.pjLevel;
+				hero.pjstatus = pjData.pjStatus;
 
 				return hero;
 			} catch (err) {
 				const profileInfo = null;
 				const heroRaw = await hero_Contract.getHero(heroId);
 				const hero = await buildHero(heroRaw, profileInfo);
+				const pjData = await getPJData(heroId);
+				hero.pjlevel = pjData.pjLevel;
+				hero.pjstatus = pjData.pjStatus;
 
 				return hero;
 			}

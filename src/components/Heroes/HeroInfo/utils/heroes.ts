@@ -524,17 +524,19 @@ export const calculateCurrentAuctionPrice = (
 /**
  * Returns a hero object the way the game likes it.
  */
-export default function buildHero(heroRaw: any, owner: any) {
+
+type Profile = {
+	owner: string;
+	name: string;
+	created: number;
+	nftId: number;
+	collectionId: number;
+	picUri: string;
+};
+
+export default function buildHero(heroRaw: any, profile: Profile | null) {
 	const visualGenes = convertGenes(heroRaw.info.visualGenes, visualGenesMap);
 	const statGenes = convertGenes(heroRaw.info.statGenes, statsGenesMap);
-
-	if (!owner) {
-		owner = {
-			id: "",
-			name: "N/A",
-			picId: null,
-		};
-	}
 
 	if (typeof heroRaw.id == "string") {
 		heroRaw.id = BigNumber.from(heroRaw.id);
@@ -552,13 +554,14 @@ export default function buildHero(heroRaw: any, owner: any) {
 	}
 
 	return {
-		ownerName: owner.name ? owner.name : owner._name,
-		ownerHash: owner.owner
-			? owner.owner
-			: owner._owner
-			? owner._owner
-			: owner.id,
-		ownerPortrait: owner.picId ? owner.picId : owner._picId,
+		owner: {
+			name: profile ? profile.name : "N/A",
+			owner: profile ? profile.owner : "",
+			nftId: profile ? profile.nftId : 0,
+			collectionId: profile ? profile.collectionId : 0,
+			picUri: profile ? profile.picUri : "",
+			created: profile ? profile.created : 0,
+		},
 		background: visualGenes.background,
 		class: statGenes.class || statGenes.mainClass,
 		subClass: statGenes.subClass,
@@ -585,6 +588,7 @@ export default function buildHero(heroRaw: any, owner: any) {
 		rarityNum: heroRaw.info.rarity,
 		shiny: heroRaw.info.shiny,
 		shinyStyle: heroRaw.info.shiny ? heroRaw.info.shinyStyle : 0,
+		currentStamina: heroRaw.stats.stamina,
 		staminaFullAt: DateTime.fromSeconds(heroRaw.state.staminaFullAt.toNumber()),
 		summonedDate: DateTime.fromSeconds(
 			heroRaw.summoningInfo.summonedTime.toNumber()
@@ -604,7 +608,20 @@ export default function buildHero(heroRaw: any, owner: any) {
 		summoningPrice: heroRaw.summoningPrice
 			? parseFloat(utils.formatEther(heroRaw.summoningPrice))
 			: 0,
+		pjstatus: null,
+		pjlevel: null,
 		winner: heroRaw.winner ? heroRaw.winner : null,
+		auction: {
+			onAuction: heroRaw.startingPrice !== heroRaw.endingPrice ? true : false,
+			startingPrice: heroRaw.startingPrice
+				? parseFloat(utils.formatEther(heroRaw.startingPrice))
+				: 0,
+			endingPrice: heroRaw.endingPrice
+				? parseFloat(utils.formatEther(heroRaw.endingPrice))
+				: 0,
+			startedAt: heroRaw.startedAt,
+			duration: heroRaw.duration,
+		},
 		stats: {
 			strength: heroRaw.stats.strength,
 			intelligence: heroRaw.stats.intelligence,

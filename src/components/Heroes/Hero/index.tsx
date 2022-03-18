@@ -29,6 +29,7 @@ interface HeroProps {
 	noCard?: any;
 	noGlow?: boolean;
 	onClick?: Function;
+	isAnimated?: boolean;
 }
 
 const HeadFemale = ({ stroke }: Props) => (
@@ -82,12 +83,12 @@ const HeroWrapper = styled.div`
 `;
 
 /* exported component */
-const Hero = ({ hero, noCard, onClick }: HeroProps) => {
+const Hero = ({ isAnimated = false, hero, noCard, onClick }: HeroProps) => {
 	const onHeroClick = useCallback(() => {
 		onClick && onClick(hero);
 	}, [onClick, hero]);
 	return (
-		<>
+		<span className={`${isAnimated ? styles.animate : ""}`}>
 			<HeroWrapper
 				onClick={onHeroClick}
 				hover={!!onClick}
@@ -186,7 +187,7 @@ const Hero = ({ hero, noCard, onClick }: HeroProps) => {
 					/>
 				</div>
 			</HeroWrapper>
-		</>
+		</span>
 	);
 };
 
