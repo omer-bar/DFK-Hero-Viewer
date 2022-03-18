@@ -20,7 +20,7 @@ const HeroStatsGrowth = ({ hero }: HeroStatsGrowthProps) => {
 								hero={hero}
 								stat={stat}
 								position={"primary"}
-								labelType={"full"}
+								labelType="abbr"
 							/>
 						);
 					})}
@@ -36,7 +36,7 @@ const HeroStatsGrowth = ({ hero }: HeroStatsGrowthProps) => {
 								hero={hero}
 								stat={stat}
 								position={"secondary"}
-								labelType={"full"}
+								labelType="abbr"
 							/>
 						);
 					})}

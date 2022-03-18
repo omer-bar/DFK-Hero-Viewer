@@ -29,8 +29,21 @@ function ShowHero() {
 					<div className="front-card">
 						<HeroCard hero={hero} isFlipped={false} isAnimated={false} />
 					</div>
-					<div className="back-card">
-						<HeroCard hero={hero} isFlipped={true} isAnimated={false} />
+					<div className="back-card-1">
+						<HeroCard
+							hero={hero}
+							isFlipped={true}
+							isAnimated={false}
+							isStatGrowth={0}
+						/>
+					</div>
+					<div className="back-card-2">
+						<HeroCard
+							hero={hero}
+							isFlipped={true}
+							isAnimated={false}
+							isStatGrowth={1}
+						/>
 					</div>
 				</div>
 			)}

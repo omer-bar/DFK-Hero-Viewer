@@ -11,10 +11,12 @@
 
 .container-2 {
 	display: grid;
-	grid-template-rows: 1fr;
-	grid-template-columns: 1fr;
 	width: 600px;
 	height: 430px;
+	gap: 0px 0px;
+	grid-template-areas:
+		"front-card back-card-1"
+		"back-card-2 .";
 }
 
 .heroForm {
@@ -30,17 +32,11 @@
 }
 
 .front-card {
-	grid-row-start: 2;
-	grid-column-start: 1;
-
-	grid-row-end: 3;
-	grid-column-end: 2;
+	grid-area: front-card;
 }
-
-.back-card {
-	grid-row-start: 2;
-	grid-column-start: 2;
-
-	grid-row-end: 3;
-	grid-column-end: 3;
+.back-card-1 {
+	grid-area: back-card-1;
+}
+.back-card-2 {
+	grid-area: back-card-2;
 }

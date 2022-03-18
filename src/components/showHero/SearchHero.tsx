@@ -32,11 +32,25 @@ function SearchHero({ props }: any) {
 					</form>
 				</div>
 
-				<div className="front-card">
-					{hero && <HeroCard hero={hero} isFlipped={false} isAnimated={true} />}
+				<div className="front-card-search">
+					{hero && (
+						<HeroCard
+							hero={hero}
+							isFlipped={false}
+							isAnimated={true}
+							isStatGrowth={2}
+						/>
+					)}
 				</div>
-				<div className="back-card">
-					{hero && <HeroCard hero={hero} isFlipped={true} isAnimated={true} />}
+				<div className="back-card-search">
+					{hero && (
+						<HeroCard
+							hero={hero}
+							isFlipped={true}
+							isAnimated={true}
+							isStatGrowth={2}
+						/>
+					)}
 				</div>
 			</div>
 		</>

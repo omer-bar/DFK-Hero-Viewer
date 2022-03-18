@@ -641,6 +641,28 @@ export default function buildHero(heroRaw: any, profile: Profile | null) {
 			shiny: heroRaw.info.shiny,
 			shinyStyle: heroRaw.info.shiny ? heroRaw.info.shinyStyle : 0,
 		},
+		statGrowth: {
+			primary: {
+				strength: heroRaw.primaryStatGrowth.strength,
+				intelligence: heroRaw.primaryStatGrowth.intelligence,
+				wisdom: heroRaw.primaryStatGrowth.wisdom,
+				luck: heroRaw.primaryStatGrowth.luck,
+				agility: heroRaw.primaryStatGrowth.agility,
+				vitality: heroRaw.primaryStatGrowth.vitality,
+				endurance: heroRaw.primaryStatGrowth.endurance,
+				dexterity: heroRaw.primaryStatGrowth.dexterity,
+			},
+			secondary: {
+				strength: heroRaw.secondaryStatGrowth.strength,
+				intelligence: heroRaw.secondaryStatGrowth.intelligence,
+				wisdom: heroRaw.secondaryStatGrowth.wisdom,
+				luck: heroRaw.secondaryStatGrowth.luck,
+				agility: heroRaw.secondaryStatGrowth.agility,
+				vitality: heroRaw.secondaryStatGrowth.vitality,
+				endurance: heroRaw.secondaryStatGrowth.endurance,
+				dexterity: heroRaw.secondaryStatGrowth.dexterity,
+			},
+		},
 		statGenes: statGenes,
 		skills: {
 			mining: heroRaw.professions.mining / 10,
