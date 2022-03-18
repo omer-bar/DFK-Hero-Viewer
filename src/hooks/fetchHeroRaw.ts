@@ -28,13 +28,21 @@ const fetchHeroRaw = async (heroId: any) => {
 			);
 
 			const heroOwnerAddress = await hero_Contract.ownerOf(heroId);
-			const profileInfo = await profile_Contract.getProfileByAddress(
-				heroOwnerAddress
-			);
-			const heroRaw = await hero_Contract.getHero(heroId);
-			const hero = await buildHero(heroRaw, profileInfo);
+			try {
+				const profileInfo = await profile_Contract.getProfileByAddress(
+					heroOwnerAddress
+				);
+				const heroRaw = await hero_Contract.getHero(heroId);
+				const hero = await buildHero(heroRaw, profileInfo);
 
-			return hero;
+				return hero;
+			} catch (err) {
+				const profileInfo = null;
+				const heroRaw = await hero_Contract.getHero(heroId);
+				const hero = await buildHero(heroRaw, profileInfo);
+
+				return hero;
+			}
 		}
 	} catch (err) {
 		console.log(err);
