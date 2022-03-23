@@ -1,15 +1,8 @@
-import React, { useState } from "react"; // useState
+import React, { useState } from "react";
 import styled from "styled-components";
 import styles from "./styles.module.css";
 
-// ------------ new features ----------------------
 import { ChevronLeft, ChevronRight } from "react-feather";
-// import { useDispatch, useSelector } from "features/hooks";
-// import {
-// 	setSelectedStatBoostHero,
-// 	setShowSurvivorStatBoostModal,
-// } from "features/journey/state";
-// ------------ end of new features ---------------
 
 import Hero from "../Hero";
 import HeroInfo from "../HeroInfo";
@@ -46,7 +39,6 @@ import mythicIcon from "../../../assets/images/hero/icons/rarity-mythic.png";
 import healthIcon from "../../../assets/images/hero/icons/icon-health.png";
 import manaIcon from "../../../assets/images/hero/icons/icon-mana.png";
 
-// new imports
 import statsIcon from "../../../assets/images/hero/icons/stats-icon.png";
 import growthIcon from "../../../assets/images/hero/icons/growth-icon.png";
 import survivorIcon from "../../../assets/images/gui/survivor_badge_2x.png";
@@ -55,16 +47,10 @@ interface HeroCardProps {
 	isFlipped: boolean;
 	hero: any;
 	isAnimated?: boolean;
-	isStatGrowth?: number;
 }
 
 /* exported component */
-const HeroCard = ({
-	isFlipped,
-	hero,
-	isAnimated,
-	isStatGrowth,
-}: HeroCardProps) => {
+const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
 	const [dataPageIndex, setDataPageIndex] = useState(0);
 
 	// Stats shown for newly summoned heroes that don't have all data available.
@@ -177,16 +163,6 @@ const HeroCard = ({
 			}
 		}
 	};
-
-	let toggle;
-
-	if (isStatGrowth === 0) {
-		toggle = dataPages[0].content;
-	} else if (isStatGrowth === 1) {
-		toggle = dataPages[1].content;
-	} else {
-		toggle = dataPages[dataPageIndex].content;
-	}
 
 	return (
 		<>
@@ -369,7 +345,9 @@ const HeroCard = ({
 								</div>
 
 								<div className={styles.heroStats}>
-									<div className={styles.heroFrame}>{toggle}</div>
+									<div className={styles.heroFrame}>
+										{dataPages[dataPageIndex].content}
+									</div>
 								</div>
 							</div>
 							{statSliders}

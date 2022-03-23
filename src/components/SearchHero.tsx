@@ -35,20 +35,10 @@ function SearchHero() {
 				{hero && (
 					<>
 						<div className="front-card-search">
-							<HeroCard
-								hero={hero}
-								isFlipped={false}
-								isAnimated={true}
-								isStatGrowth={2}
-							/>
+							<HeroCard hero={hero} isFlipped={false} isAnimated={true} />
 						</div>
 						<div className="back-card-search">
-							<HeroCard
-								hero={hero}
-								isFlipped={true}
-								isAnimated={true}
-								isStatGrowth={2}
-							/>
+							<HeroCard hero={hero} isFlipped={true} isAnimated={true} />
 						</div>
 					</>
 				)}
