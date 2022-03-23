@@ -127,7 +127,7 @@ function SearchHero() {
 ## Credit
 Thanks to [Kingdom studios](https://kingdomstudios.io/) the creators of [DefiKingdoms](https://defikingdoms.com/) for allowing me to use the art assets and the hero component source code that was used to make this project happen.
 ## License
-Copyright © [Omer Bar](/EryX666) and Authors, [Licensed under ISC](/LICENSE).
+Copyright © [Omer Bar](https://github.com/EryX666) and Authors, [Licensed under ISC](/LICENSE.md).
 
 ---------------
 #### Tip Jar
