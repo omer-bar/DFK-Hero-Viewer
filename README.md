@@ -1,46 +1,135 @@
-# Getting Started with Create React App
+# DFK Hero Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DFK Hero Viewer is a React implementation for showing hero cards(NFTs) from the succesful blockchain game DefiKingdom.
+<p align="center">
+  <img src="https://i.imgur.com/X5eUbv8.jpg">
+</p>
 
-## Available Scripts
+## Prerequisites
+- Node.js V16.14.x
+- React V17.x
 
-In the project directory, you can run:
+## Install
+You can either clone this repository or use the [npm package](https://www.npmjs.com/package/dfk-hero-viewer)
+```Shell
+npm i dfk-hero-viewer
+```
 
-### `npm start`
+## Usage
+The main component that is used to render the hero card is HeroCard
+```js
+import {HeroCard} from "dfk-hero-viewer";
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<HeroCard hero={hero} isAnimated={true} isFlipped={false} />
+```
+the component needs to be passed 2 properties with 1 optional property
+|		Property name		|		Value			|		Required		|		Default			|	Accepted Values		|
+|		:----------:		|		:------:		|		:-------:		|		:-------:		|		:-------:		|
+|		hero				|		Object			|			√			|		required		|		Hero Object		|
+|		isFlipped			|		Boolean			|			√			|		required		|true=Stats side, false=sprite side|
+|		isAnimated			|		Boolean			|			x			|		false			|true=animate sprite, false=dont animate sprite|
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get the hero object needed to rendered the card correctly there is a function included called fetchHero
+```js
+import {fetchHero} from "dfk-hero-viewer";
+```
+#### exapmles
+##### 1. render the hero on page load and a button* to flip the card -
+```js
+import { useState, useEffect } from "react";
+import { fetchHero, HeroCard } from "dfk-hero-viewer";
 
-### `npm test`
+function App() {
+	const [hero, setHero] = useState<any>(null);
+	const [flipped, setFlipped] = useState(false);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+	useEffect(() => {
+		const getHero = async () => {
+			let heroData = await fetchHero(34147);
+			setHero(heroData);
+		};
+		getHero();
+	}, []);
 
-### `npm run build`
+	return (
+		<>
+			{hero && (
+				<>
+					<HeroCard hero={hero} isFlipped={flipped} isAnimated={true} />
+					<button onClick={() => setFlipped(!flipped)}>Flip card</button>
+				</>
+			)}
+		</>
+	);
+}
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+export default App;
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### 2. a form to fetch the hero and render the card
+```js
+import { useState } from "react";
+import { fetchHero, HeroCard } from "dfk-hero-viewer";
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+interface heroData {
+	hero: any;
+}
 
-### `npm run eject`
+function SearchHero() {
+	const [hero, setHero] = useState<heroData | any>(null);
+	const [heroIdInput, setHeroIdInput] = useState();
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+	const onSubmit = async (evt: any) => {
+		evt.preventDefault();
+		const hero = await fetchHero(heroIdInput);
+		setHero(hero);
+	};
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+	return (
+		<>
+			<div>
+				<div>
+					<form onSubmit={onSubmit}>
+						<input
+							defaultValue={heroIdInput}
+							onChange={(e: any) => setHeroIdInput(e.target.value)}
+							type="text"
+							placeholder="Enter Hero Id"
+						></input>
+						<button type="submit">Fetch hero card</button>
+					</form>
+				</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+				<div>
+					{hero && (
+						<>
+							<HeroCard
+								hero={hero}
+								isFlipped={false}
+								isAnimated={true}
+							/>
+							<HeroCard
+								hero={hero}
+								isFlipped={true}
+								isAnimated={true}
+							/>
+						</>
+					)}
+				</div>
+			</div>
+		</>
+	);
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+\* note - do not use onClick on the card or container since there are things in the card like statGrowth you want to click to activate and placing onClick on the container will flip the card AND switch to statGrowth instead of just switching to statGrowth.
 
-## Learn More
+## Credit
+Thanks to [Kingdom studios](https://kingdomstudios.io/) the creators of [DefiKingdoms](https://defikingdoms.com/) for allowing me to use the art assets and the hero component source code that was used to make this project happen.
+## License
+Copyright © [Omer Bar](/EryX666) and Authors, [Licensed under ISC](/LICENSE).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+---------------
+#### Tip Jar
+if you like to support me in my endeavors of making more tools and applications in the DFK space you can tip me on this address:
+metamask - 0x9ef08D3F22A9ad87f10eD3a6582f4a70Ea05aA34
