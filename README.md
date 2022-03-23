@@ -45,7 +45,7 @@ function App() {
 
 	useEffect(() => {
 		const getHero = async () => {
-			let heroData = await fetchHero(34147);
+			let heroData = await fetchHero(1);
 			setHero(heroData);
 		};
 		getHero();
@@ -126,10 +126,12 @@ function SearchHero() {
 
 ## Credit
 Thanks to [Kingdom studios](https://kingdomstudios.io/) the creators of [DefiKingdoms](https://defikingdoms.com/) for allowing me to use the art assets and the hero component source code that was used to make this project happen.
+
 ## License
 Copyright © [Omer Bar](https://github.com/EryX666) and Authors, [Licensed under ISC](/LICENSE.md).
 
 ---------------
 #### Tip Jar
 if you like to support me in my endeavors of making more tools and applications in the DFK space you can tip me on this address:
+
 metamask - 0x9ef08D3F22A9ad87f10eD3a6582f4a70Ea05aA34
