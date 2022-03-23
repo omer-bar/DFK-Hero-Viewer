@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import axios from "axios";
-import buildHero from "../components/Heroes/HeroInfo/utils/heroes";
+import buildHero from "../Heroes/HeroInfo/utils/heroes";
 
 const RPC_ADDRESS = "https://harmony-0-rpc.gateway.pokt.network";
 
@@ -37,7 +37,7 @@ const getPJData = async (heroId: any) => {
 	return { pjLevel, pjStatus };
 };
 
-const fetchHeroRaw = async (heroId: any) => {
+const fetchHero = async (heroId: any) => {
 	try {
 		const Provider = new ethers.providers.JsonRpcProvider(RPC_ADDRESS);
 		if (await Provider.ready) {
@@ -78,4 +78,4 @@ const fetchHeroRaw = async (heroId: any) => {
 	}
 };
 
-export default fetchHeroRaw;
+export default fetchHero;

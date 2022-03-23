@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
-import fetchHeroRaw from "../../hooks/fetchHeroRaw";
-import HeroCard from "../Heroes/HeroCard";
+import { HeroCard, fetchHero } from ".";
 
 interface heroData {
 	hero: any;
 }
 
-function SearchHero({ props }: any) {
+function SearchHero() {
 	const [hero, setHero] = useState<heroData | any>(null);
 	const [heroIdInput, setHeroIdInput] = useState();
 
 	const onSubmit = async (evt: any) => {
 		evt.preventDefault();
-		const hero = await fetchHeroRaw(heroIdInput);
+		const hero = await fetchHero(heroIdInput);
 		setHero(hero);
 	};
 
 	useEffect(() => {}, [hero]);
+
 	return (
 		<>
 			<div className="container-1">
@@ -32,26 +32,26 @@ function SearchHero({ props }: any) {
 					</form>
 				</div>
 
-				<div className="front-card-search">
-					{hero && (
-						<HeroCard
-							hero={hero}
-							isFlipped={false}
-							isAnimated={true}
-							isStatGrowth={2}
-						/>
-					)}
-				</div>
-				<div className="back-card-search">
-					{hero && (
-						<HeroCard
-							hero={hero}
-							isFlipped={true}
-							isAnimated={true}
-							isStatGrowth={2}
-						/>
-					)}
-				</div>
+				{hero && (
+					<>
+						<div className="front-card-search">
+							<HeroCard
+								hero={hero}
+								isFlipped={false}
+								isAnimated={true}
+								isStatGrowth={2}
+							/>
+						</div>
+						<div className="back-card-search">
+							<HeroCard
+								hero={hero}
+								isFlipped={true}
+								isAnimated={true}
+								isStatGrowth={2}
+							/>
+						</div>
+					</>
+				)}
 			</div>
 		</>
 	);

@@ -121,4 +121,4 @@ const HeroStatsSkills = ({ hero }: HeroStatsSkillsProps) => {
 	);
 };
 
-export default HeroStatsSkills;
+export default React.memo(HeroStatsSkills);
