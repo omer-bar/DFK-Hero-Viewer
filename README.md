@@ -22,19 +22,41 @@ import {HeroCard} from "dfk-hero-viewer";
 
 <HeroCard hero={hero} isAnimated={true} isFlipped={false} />
 ```
-the component needs to be passed 2 properties with 1 optional property
+the component needs to be passed 1 property and it accepts an additional 3 optional properties
 |		Property name		|		Value			|		Required		|		Default			|	Accepted Values		|
 |		:----------:		|		:------:		|		:-------:		|		:-------:		|		:-------:		|
 |		hero				|		Object			|			√			|		required		|		Hero Object		|
-|		isFlipped			|		Boolean			|			√			|		required		|true=Stats side, false=sprite side|
+|		isFlipped			|		Boolean			|			x			|		false			|true=Stats side, false=sprite side|
 |		isAnimated			|		Boolean			|			x			|		false			|true=animate sprite, false=dont animate sprite|
+|		flipToggle			|		Boolean			|			x			|		undefined			|true=toggle on, false/undefined=toggle off|
+
+the flipToggle property can be applied to the component to give the ability of flipping the card onClick see [example](https://github.com/EryX666/DFK-Hero-Viewer/edit/main/README.md#1-you-can-use-the-fliptoggle-property-to-give-the-card-the-ability-to-flip-on-user-click-instead-of-using-a-button--) for details.
+
 
 To get the hero object needed to rendered the card correctly there is a function included called fetchHero
 ```js
 import {fetchHero} from "dfk-hero-viewer";
 ```
 #### exapmles
-##### 1. render the hero on page load and a button* to flip the card -
+
+##### 1. you can use the flipToggle property to give the card the ability to flip on user click instead of using a button -
+```js
+...return (
+	<HeroCard hero={hero} flipToggle />
+)
+```
+
+##### 1a. you can also spread props to the component -
+```js
+...
+const props = { hero, isFlipped: true, isAnimated: false, flipToggle: true };
+
+return (
+	<HeroCard {...props} />
+)
+
+```
+##### 2. render the hero on page load and a button to flip the card -
 ```js
 import { useState, useEffect } from "react";
 import { fetchHero, HeroCard } from "dfk-hero-viewer";
@@ -66,7 +88,7 @@ function App() {
 export default App;
 ```
 
-##### 2. a form to fetch the hero and render the card
+##### 3. a form to fetch the hero and render the card -
 ```js
 import { useState } from "react";
 import { fetchHero, HeroCard } from "dfk-hero-viewer";
@@ -121,8 +143,6 @@ function SearchHero() {
 	);
 }
 ```
-
-\* note - do not use onClick on the card or container since there are things in the card like statGrowth you want to click to activate and placing onClick on the container will flip the card AND switch to statGrowth instead of just switching to statGrowth.
 
 ## Credit
 Thanks to [Kingdom studios](https://kingdomstudios.io/) the creators of [DefiKingdoms](https://defikingdoms.com/) for allowing me to use the art assets and the hero component source code that was used to make this project happen.
