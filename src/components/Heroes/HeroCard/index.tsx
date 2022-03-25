@@ -44,14 +44,21 @@ import growthIcon from "../../../assets/images/hero/icons/growth-icon.png";
 import survivorIcon from "../../../assets/images/gui/survivor_badge_2x.png";
 
 interface HeroCardProps {
-	isFlipped: boolean;
 	hero: any;
+	isFlipped?: boolean;
 	isAnimated?: boolean;
+	flipToggle?: boolean;
 }
 
 /* exported component */
-const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
+const HeroCard = ({
+	hero,
+	isFlipped,
+	isAnimated,
+	flipToggle,
+}: HeroCardProps) => {
 	const [dataPageIndex, setDataPageIndex] = useState(0);
+	const [Flipped, setFlipped] = useState(isFlipped);
 
 	// Stats shown for newly summoned heroes that don't have all data available.
 	let dataPages = [
@@ -105,14 +112,20 @@ const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
 			<>
 				<div
 					className={`${styles.sliderToggle} ${styles.sliderLeft}`}
-					onClick={() => handleStatsSlide("left")}
+					onClick={(e: any) => {
+						e.stopPropagation();
+						handleStatsSlide("left");
+					}}
 				>
 					<ChevronLeft />
 				</div>
 
 				<div
 					className={`${styles.sliderToggle} ${styles.sliderRight}`}
-					onClick={() => handleStatsSlide("right")}
+					onClick={(e: any) => {
+						e.stopPropagation();
+						handleStatsSlide("right");
+					}}
 				>
 					<ChevronRight />
 				</div>
@@ -123,7 +136,10 @@ const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
 							<div
 								key={page.label}
 								className={`${styles.statsToggleButton}`}
-								onClick={() => setDataPageIndex(index)}
+								onClick={(e: any) => {
+									e.stopPropagation();
+									setDataPageIndex(index);
+								}}
 							>
 								<div
 									className={`${styles.statsToggleButtonImage} ${
@@ -169,6 +185,9 @@ const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
 			{hero && (
 				<CardContainer key={hero.id}>
 					<div
+						onClick={() => {
+							if (flipToggle) setFlipped(!Flipped);
+						}}
 						className={`
           ${styles.heroCard}
           ${isAnimated && styles.animate}
@@ -176,7 +195,7 @@ const HeroCard = ({ isFlipped, hero, isAnimated }: HeroCardProps) => {
           ${hero.shiny ? styles[`shiny${hero.shinyStyle}`] : ""}
           ${styles[`${hero.element}`]}
           ${styles[`${hero.rarity}`]}
-          ${isFlipped ? styles.flipped : ""}
+          ${Flipped ? styles.flipped : ""}
           `}
 					>
 						<div className={styles.heroCardFront}>
