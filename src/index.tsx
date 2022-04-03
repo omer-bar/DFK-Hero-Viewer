@@ -1,10 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import fetchHero from "./components/utils/fetchHero";
+import HeroCard from "./components/Heroes/HeroCard";
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById("root")
-);
+export { fetchHero, HeroCard };
