@@ -501,7 +501,7 @@ const FemaleHair = ({ hairId, hairColor }: any) => {
             <img src={config.backshadow} className={styles.shadow} alt="" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 -0.5 59 45"
+              viewBox="0 -0.5 30 45"
               shapeRendering="crispEdges"
               className={styles.color}
             >
@@ -521,7 +521,7 @@ const FemaleHair = ({ hairId, hairColor }: any) => {
             <img src={config.frontshadow} className={styles.shadow} alt="" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 -0.5 59 45"
+              viewBox="0 -0.5 30 45"
               shapeRendering="crispEdges"
               className={styles.color}
             >
