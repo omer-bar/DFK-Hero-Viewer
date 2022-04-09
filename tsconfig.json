@@ -1,21 +1,38 @@
 {
-	"compilerOptions": {
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"strict": true,
-		"forceConsistentCasingInFileNames": true,
-		"noFallthroughCasesInSwitch": true,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"noEmit": true,
-		"jsx": "react-jsx",
-		"noImplicitAny": false
-	},
-	"include": ["src", "./node_modules/ethers-typescript-typings/index.d.ts"]
+    "compilerOptions": {
+        "jsx": "react",
+        "declaration": true,
+        "outDir": "dist",
+        "target": "es5",
+        "module": "commonjs",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noImplicitAny": false
+    },
+    "include": [
+        "./src/**/*",
+        "./src/**/*.css",
+        "./src/**/*.svg",
+        "./src/**/*.png",
+        "./src/**/*.gif",
+        "./node_modules/ethers-typescript-typings/index.d.ts",
+        "./src/react-app-env.d.ts",
+        "./src/index.ts",
+        "./dist/**/*",
+        "./dist/**/*.css",
+        "./dist/**/*.svg",
+        "./dist/**/*.png",
+        "./dist/**/*.gif",
+        "./dist/react-app-env.d.ts",
+        "./dist/index.ts"
+    ]
 }

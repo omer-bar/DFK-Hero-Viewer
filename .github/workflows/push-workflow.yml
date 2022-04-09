@@ -1,0 +1,115 @@
+name: Package
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache NPM modules
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run eslint
+
+      - name: Test
+        run: npm run test
+
+  publish:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache NPM modules
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17
+          registry-url: https://registry.npmjs.org/
+          scope: "@eryx6"
+
+      - name: Set Version Suffix
+        id: version
+        run: |
+          VERSION=$(jq -r .version package.json)
+          VERSION_TAG=next
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            VERSION_TAG=nightly
+          elif [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION_TAG="latest"
+          fi
+          echo VERSION_TAG - ${VERSION_TAG}
+          echo GITHUB_REF - ${GITHUB_REF}
+          if [[ "$VERSION_TAG" != "latest" ]]; then
+            git config user.email "${{ secrets.NPM_EMAIL }}"
+            git config user.name "${{ secrets.NPM_NAME }}"
+            npm version prerelease --preid=RC
+            VERSION=$(jq -r .version package.json)
+            PKG_JSON=$(jq --arg VERSION "$VERSION" '.version = $VERSION' package.json)
+            echo Package JSON
+            echo $PKG_JSON | jq -r
+            echo $PKG_JSON | jq -r > package.json
+          elif [[ ${VERSION} =~ '[0-9]+\.[0-9]+\.[0-9]+-.*' ]]; then
+            UPSTREAM=$(npm show @eryx6/dfk-hero-viewer-testing version)
+            dpkg --compare-versions "${UPSTREAM}" "lt" "${VERSION}" || npm version patch
+            VERSION=$(jq -r .version package.json)
+          fi
+          echo Version: ${VERSION}
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=version_tag::${VERSION_TAG}
+          echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          echo ::set-output name=vcs_ref::${GITHUB_SHA::8}
+
+      - name: Install
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Update package.json
+        run: jq '.main = "./dist/index.js"' package.json > package.json.tmp && mv package.json.tmp package.json
+
+      - name: Publish
+        run: |
+          npm publish --ignore-scripts --access public $([[ "${{ steps.version.outputs.version_tag }}" != "latest" ]] && echo --tag=${{ steps.version.outputs.version_tag }})
+
