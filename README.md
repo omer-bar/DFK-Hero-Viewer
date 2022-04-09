@@ -6,8 +6,8 @@ DFK Hero Viewer is a React implementation for showing hero cards(NFTs) from the 
 </p>
 
 ## Prerequisites
-- Node.js V16.14.x
-- React V17.x
+- Node.js ≥v16.14.x
+- React ≥v17.x
 
 ## Install
 You can either clone this repository or use the [npm package](https://www.npmjs.com/package/dfk-hero-viewer)
