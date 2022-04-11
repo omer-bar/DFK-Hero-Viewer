@@ -90,7 +90,7 @@ jobs:
             echo $PKG_JSON | jq -r
             echo $PKG_JSON | jq -r > package.json
           elif [[ ${VERSION} =~ '[0-9]+\.[0-9]+\.[0-9]+-.*' ]]; then
-            UPSTREAM=$(npm show @eryx6/dfk-hero-viewer-testing version)
+            UPSTREAM=$(npm show dfk-hero-viewer version)
             dpkg --compare-versions "${UPSTREAM}" "lt" "${VERSION}" || npm version patch
             VERSION=$(jq -r .version package.json)
           fi
@@ -112,4 +112,3 @@ jobs:
       - name: Publish
         run: |
           npm publish --ignore-scripts --access public $([[ "${{ steps.version.outputs.version_tag }}" != "latest" ]] && echo --tag=${{ steps.version.outputs.version_tag }})
-
