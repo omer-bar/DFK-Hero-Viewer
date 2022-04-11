@@ -1,6 +1,6 @@
 {
     "name": "dfk-hero-viewer",
-    "version": "1.1.4",
+    "version": "1.2.1",
     "private": false,
     "description": "React component to render Hero cards from DefiKingdoms game",
     "bugs": "https://github.com/EryX666/DFK-Hero-Viewer/issues",
@@ -16,19 +16,21 @@
         "@types/react": "^17.0.38",
         "@types/react-dom": "^17.0.11",
         "axios": "^0.24.0",
+        "classnames": "^2.3.1",
         "ethers": "^5.5.4",
         "luxon": "^2.3.0",
         "polished": "^4.1.3",
         "react": "^17.0.2",
         "react-feather": "^2.0.9",
         "react-popper": "^2.2.5",
+        "sass": "^1.50.0",
         "styled-components": "^5.3.3"
     },
     "scripts": {
         "eslint": "eslint src --fix",
         "test": "",
         "clean": "del-cli ./dist",
-        "copy-files": "copyfiles -u 1 ./src/**/*.css ./src/**/*.svg ./src/**/*.png ./src/**/*.gif ./dist/",
+        "copy-files": "copyfiles -u 1 ./src/**/*.css ./src/**/*.svg ./src/**/*.png ./src/**/*.gif ./src/**/*.scss ./dist/",
         "build": "npm run clean && mkdir dist && npm run copy-files && tsc -p ."
     },
     "eslintConfig": {
