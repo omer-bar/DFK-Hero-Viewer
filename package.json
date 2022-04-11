@@ -2,7 +2,7 @@
     "name": "dfk-hero-viewer",
     "version": "1.1.4",
     "private": false,
-    "description": "React component to render Hero cards from DefiKingdoms game.",
+    "description": "React component to render Hero cards from DefiKingdoms game",
     "bugs": "https://github.com/EryX666/DFK-Hero-Viewer/issues",
     "repository": {
         "type": "git",
