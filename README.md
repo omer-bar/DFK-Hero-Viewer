@@ -1,6 +1,6 @@
 # DFK Hero Viewer
 
-DFK Hero Viewer is a React implementation for showing hero cards(NFTs) from the succesful blockchain game DefiKingdom.
+DFK Hero Viewer is a React implementation for showing hero cards(NFTs) from the successful blockchain game DefiKingdom.
 <p align="center">
   <img src="https://i.imgur.com/X5eUbv8.jpg">
 </p>
