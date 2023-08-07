@@ -33,13 +33,13 @@ the component needs to be passed 1 property and it accepts an additional 3 optio
 the flipToggle property can be applied to the component to give the ability of flipping the card onClick see [example](https://github.com/EryX666/DFK-Hero-Viewer/edit/main/README.md#1-you-can-use-the-fliptoggle-property-to-give-the-card-the-ability-to-flip-on-user-click-instead-of-using-a-button--) for details.
 
 
-To get the hero object needed to rendered the card correctly there is a function included called fetchHero
+To get the hero object needed to render the card correctly there is a function included called fetchHero
 ```js
 import {fetchHero} from "dfk-hero-viewer";
 ```
-#### exapmles
+#### examples
 
-##### 1. you can use the flipToggle property to give the card the ability to flip on user click instead of using a button -
+##### 1. You can use the flipToggle property to give the card the ability to flip on user click instead of using a button -
 ```js
 ...return (
 	<HeroCard hero={hero} flipToggle />
@@ -56,7 +56,7 @@ return (
 )
 
 ```
-##### 2. render the hero on page load and a button to flip the card -
+##### 2. Render the hero on page load and a button to flip the card -
 ```js
 import { useState, useEffect } from "react";
 import { fetchHero, HeroCard } from "dfk-hero-viewer";
@@ -88,7 +88,7 @@ function App() {
 export default App;
 ```
 
-##### 3. a form to fetch the hero and render the card -
+##### 3. A form to fetch the hero and render the card -
 ```js
 import { useState } from "react";
 import { fetchHero, HeroCard } from "dfk-hero-viewer";
@@ -148,10 +148,10 @@ function SearchHero() {
 Thanks to [Kingdom studios](https://kingdomstudios.io/) the creators of [DefiKingdoms](https://defikingdoms.com/) for allowing me to use the art assets and the hero component source code that was used to make this project happen.
 
 ## License
-Copyright © [Omer Bar](https://github.com/EryX666) and Authors, [Licensed under ISC](/LICENSE.md).
+Copyright © [Omer Bar](https://github.com/omer-bar) and Authors, [Licensed under ISC](/LICENSE.md).
 
 ---------------
 #### Tip Jar
-if you like to support me in my endeavors of making more tools and applications in the DFK space you can tip me on this address:
+if you like to support me in my endeavors of making more tools and applications in the DFK space you can tip me at this address:
 
 metamask - 0x9ef08D3F22A9ad87f10eD3a6582f4a70Ea05aA34
